@@ -1,0 +1,8 @@
+.classpath
+.settings/
+.project
+src/database.properties
+build/
+bin/
+target/
+config/
