@@ -1,4 +1,4 @@
-package databasePackage;
+package hacker.partie.databasePackage;
 
 /**
  * Die Klasse "Sentence" ist für die Erfassung und Rückgabe des Inhalts der
@@ -14,6 +14,14 @@ public class Sentence {
 	private String sentenceObject;
 	private String sentenceVerb;
 	private String sentenceComplement;
+	
+	/**
+	 * Konstruktor für einen random Sentence
+	 * 
+	 */
+	public Sentence() {
+
+	}
 
 	/**
 	 * Konstruktor für den Zugriff auf alle Tabellenfelder
