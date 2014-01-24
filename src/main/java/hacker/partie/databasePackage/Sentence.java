@@ -8,13 +8,12 @@ package hacker.partie.databasePackage;
  * 
  */
 
-
 public class Sentence {
 	private int sentenceID;
 	private String sentenceObject;
 	private String sentenceVerb;
 	private String sentenceComplement;
-	
+
 	/**
 	 * Konstruktor für einen random Sentence
 	 * 

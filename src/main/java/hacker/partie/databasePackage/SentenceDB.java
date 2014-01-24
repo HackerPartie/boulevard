@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 /**
  * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
  * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences". Weiters
- * bietet sie die Möglichkeit zur Erstellung von zufällig zusammengesetzte
- * Senctences.
+ * bietet sie die Möglichkeit zur Erstellung eines zufällig zusammengestelten
+ * Sentence.
  * 
  * @author Bergsocke
  * 
@@ -65,7 +65,6 @@ public class SentenceDB {
 
 		return sentenceList;
 	}
-	
 
 	/**
 	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle "sentences"
@@ -73,7 +72,7 @@ public class SentenceDB {
 	 * @param sentenceToSave
 	 * @return successful
 	 */
-	public static int saveBook(Sentence sentenceToSave) {
+	public static int saveSentence(Sentence sentenceToSave) {
 
 		try {
 			connect = DatabaseConnection.connectDB();
@@ -82,9 +81,11 @@ public class SentenceDB {
 			myPreparedStatement = connect
 					.prepareStatement("INSERT INTO sentence_database.sentences VALUES(default,?, ?, ?)");
 
-			myPreparedStatement.setString(1, sentenceToSave.getSentenceObject());
+			myPreparedStatement
+					.setString(1, sentenceToSave.getSentenceObject());
 			myPreparedStatement.setString(2, sentenceToSave.getSentenceVerb());
-			myPreparedStatement.setString(3, sentenceToSave.getSentenceComplement());
+			myPreparedStatement.setString(3,
+					sentenceToSave.getSentenceComplement());
 
 			// SQL-Befehl wird ausgeführt
 			successful = myPreparedStatement.executeUpdate();
@@ -107,32 +108,57 @@ public class SentenceDB {
 			closeConnections();
 		}
 	}
+
 	/**
-	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus
-	 * der Tabelle "sentences"
+	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
+	 * Tabellenfeldern der Tabelle "sentences"
 	 * 
 	 * @return randomSentence
 	 */
 	public static Sentence createRandomSentence() {
 
 		connect = DatabaseConnection.connectDB();
-
-		int randomObjektID = 0;
-		int randomVerbID = 0;
-		int randomComplementID = 0;
-
+		int numRows = 0;
+		String randomObjekt = null;
+		String randomVerb = null;
+		String randomComplement = null;
 		Sentence randomSentence = new Sentence();
 
 		try {
-			// PreparedStatement für den SQL-Befehl
-//			myPreparedStatement = connect
-//					.prepareStatement("SELECT * FROM sentence_database.sentences;");
-
-			// SQL-Befehl wird ausgeführt
+			// Anzahl der vorhandenen Datensätze ermitteln
+			myPreparedStatement = connect
+					.prepareStatement("SELECT COUNT(*) AS count FROM sentence_database.sentences");
 			myResultSet = myPreparedStatement.executeQuery();
+			while (myResultSet.next()) {
+				numRows = myResultSet.getInt("count");
+			}
 
-			// es wird jeweils nur ein Datensatz ausgelesen!!
-			//........................
+			// Zufallszahl von 1 bis Anzahl der Datensätze
+			int randomObjektID = 1 + (int) (Math.random() * numRows);
+			int randomVerbID = 1 + (int) (Math.random() * numRows);
+			int randomComplementID = 1 + (int) (Math.random() * numRows);
+
+			// Ein Zufallobjekt aus der Tabelle holen
+			myResultSet = findByID(randomObjektID);
+			if (myResultSet.next()) {
+				randomObjekt = myResultSet.getString(2);
+			}
+
+			// Ein Zufallverb aus der Tabelle holen
+			myResultSet = findByID(randomVerbID);
+			if (myResultSet.next()) {
+				randomVerb = myResultSet.getString(3);
+			}
+
+			// Ein Zufallcomplement aus der Tabelle holen
+			myResultSet = findByID(randomComplementID);
+			if (myResultSet.next()) {
+				randomComplement = myResultSet.getString(4);
+			}
+
+			// Zufallssentence zusammenstellen
+			randomSentence = new Sentence(randomObjekt, randomVerb,
+					randomComplement);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -146,6 +172,31 @@ public class SentenceDB {
 		}
 
 		return randomSentence;
+	}
+
+	/**
+	 * Ermittelt einen Datensatz aus der Tabelle "sentences" anhand einer
+	 * Zufallszahl
+	 * 
+	 * @param randomNumber
+	 * @return myResultSet
+	 */
+	public static ResultSet findByID(int randomNumber) {
+		try {
+			myPreparedStatement = connect
+					.prepareStatement("SELECT * FROM sentence_database.sentences WHERE id = "
+							+ randomNumber + ";");
+
+			myResultSet = myPreparedStatement.executeQuery();
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			JOptionPane.showMessageDialog(null,
+					"Datenbankabfrage konnte nicht durchgeführt werden.",
+					"Fehler", JOptionPane.ERROR_MESSAGE);
+		}
+
+		return myResultSet;
 	}
 
 	/**
@@ -171,6 +222,39 @@ public class SentenceDB {
 			JOptionPane.showMessageDialog(null,
 					"Verbindungen konnten nicht geschlossen werden.", "Fehler",
 					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/*
+	 * Methode lediglich zum Testen (Consolenausgabe)
+	 */
+	public static void displayAllTest() {
+		try {
+			connect = DatabaseConnection.connectDB();
+
+			// Alle Datensätze anzeigen
+			myPreparedStatement = connect
+					.prepareStatement("SELECT * FROM sentence_database.sentences;");
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				int id = myResultSet.getInt(1);
+				String objekt = myResultSet.getString(2);
+				String verb = myResultSet.getString(3);
+				String complement = myResultSet.getString(4);
+				System.out.println(id + ": " + objekt + " " + verb
+						+ complement);
+			}
+
+			// Zufallssentence
+			Sentence mySentence = createRandomSentence();
+			System.out.println("Zufallssatz:");
+			System.out.println(mySentence.getSentenceObject() + " "
+					+ mySentence.getSentenceVerb() + " "
+					+ mySentence.getSentenceComplement());
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 	}
 
