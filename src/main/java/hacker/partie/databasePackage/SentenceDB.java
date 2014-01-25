@@ -133,30 +133,30 @@ public class SentenceDB {
 				numRows = myResultSet.getInt("count");
 			}
 
-			// Zufallszahl von 1 bis Anzahl der Datensätze
+			// Random-Zahl von 1 bis Anzahl der Datensätze
 			int randomObjektID = 1 + (int) (Math.random() * numRows);
 			int randomVerbID = 1 + (int) (Math.random() * numRows);
 			int randomComplementID = 1 + (int) (Math.random() * numRows);
 
-			// Ein Zufallobjekt aus der Tabelle holen
+			// Ein Random-Objekt aus der Tabelle holen
 			myResultSet = findByID(randomObjektID);
 			if (myResultSet.next()) {
 				randomObjekt = myResultSet.getString(2);
 			}
 
-			// Ein Zufallverb aus der Tabelle holen
+			// Ein Random-Verb aus der Tabelle holen
 			myResultSet = findByID(randomVerbID);
 			if (myResultSet.next()) {
 				randomVerb = myResultSet.getString(3);
 			}
 
-			// Ein Zufallcomplement aus der Tabelle holen
+			// Ein Random-Complement aus der Tabelle holen
 			myResultSet = findByID(randomComplementID);
 			if (myResultSet.next()) {
 				randomComplement = myResultSet.getString(4);
 			}
 
-			// Zufallssentence zusammenstellen
+			// Random Sentence zusammenstellen
 			randomSentence = new Sentence(randomObjekt, randomVerb,
 					randomComplement);
 
@@ -224,38 +224,4 @@ public class SentenceDB {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	/*
-	 * Methode lediglich zum Testen (Consolenausgabe)
-	 */
-	public static void displayAllTest() {
-		try {
-			connect = DatabaseConnection.connectDB();
-
-			// Alle Datensätze anzeigen
-			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentence_database.sentences;");
-			myResultSet = myPreparedStatement.executeQuery();
-
-			while (myResultSet.next()) {
-				int id = myResultSet.getInt(1);
-				String objekt = myResultSet.getString(2);
-				String verb = myResultSet.getString(3);
-				String complement = myResultSet.getString(4);
-				System.out.println(id + ": " + objekt + " " + verb
-						+ complement);
-			}
-
-			// Zufallssentence
-			Sentence mySentence = createRandomSentence();
-			System.out.println("Zufallssatz:");
-			System.out.println(mySentence.getSentenceObject() + " "
-					+ mySentence.getSentenceVerb() + " "
-					+ mySentence.getSentenceComplement());
-
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-	}
-
 }
