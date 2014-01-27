@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * Klasse mit Main-Methode zum Testen
+ * Klasse mit Main-Methode zum Testen (Consolenausgabe)
  * 
  */
 
@@ -19,14 +19,19 @@ public class TestSentence {
 	private static PreparedStatement myPreparedStatement = null;
 	private static ResultSet myResultSet = null;
 
+	/**
+	 * Main-Methode
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		// Alle Datensätze anzeigen
+		// Alle DatensÃ¤tze und einen Random Sentence anzeigen
 		displayAllTest();
 
 		// Test-Sentences
 		Sentence sentenceTest1 = new Sentence("Piraten", "erobern",
 				"Luxus-Schiff");
-		Sentence sentenceTest2 = new Sentence("Fans", "stuermen", "Station");
+		Sentence sentenceTest2 = new Sentence("Fans", "stÃ¼rmen", "Station");
 
 		// Sentences speichern
 		SentenceDB.saveSentence(sentenceTest1);
@@ -34,7 +39,7 @@ public class TestSentence {
 
 		displayAllTest();
 
-		// Sentence löschen
+		// Sentence lÃ¶schen
 		SentenceDB.deleteSentence(2);
 
 		displayAllTest();
@@ -42,14 +47,14 @@ public class TestSentence {
 	}
 
 	/**
-	 * Es werden alle vorhandenen Datensätze der Tabelle "sentences" angezeit
+	 * Es werden alle vorhandenen DatensÃ¤tze der Tabelle "sentences" angezeigt
 	 * und ein Random-Sentence gebildet (Consolenausgabe)
 	 */
 	public static void displayAllTest() {
 		try {
 			connect = DatabaseConnection.connectDB();
 
-			// Alle Datensätze anzeigen
+			// Alle Datensï¿½tze anzeigen
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentence_database.sentences;");
 			myResultSet = myPreparedStatement.executeQuery();
