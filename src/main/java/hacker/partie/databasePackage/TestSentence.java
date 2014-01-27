@@ -16,6 +16,23 @@ public class TestSentence {
 	private static ResultSet myResultSet = null;
 
 	public static void main(String[] args) {
+		// Alle Datensätze anzeigen
+		displayAllTest();
+
+		// Test-Sentences
+		Sentence sentenceTest1 = new Sentence("Piraten", "erobern",
+				"Luxus-Schiff");
+		Sentence sentenceTest2 = new Sentence("Fans", "stuermen", "Station");
+
+		// Sentences speichern
+		SentenceDB.saveSentence(sentenceTest1);
+		SentenceDB.saveSentence(sentenceTest2);
+
+		displayAllTest();
+
+		// Sentence löschen
+		SentenceDB.deleteSentence(2);
+
 		displayAllTest();
 
 	}
@@ -48,11 +65,10 @@ public class TestSentence {
 			System.out.println(mySentence.getSentenceObject() + " "
 					+ mySentence.getSentenceVerb() + " "
 					+ mySentence.getSentenceComplement());
-			
-			SentenceDB.closeConnections();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 	}
+
 }
