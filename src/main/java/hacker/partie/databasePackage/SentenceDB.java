@@ -90,9 +90,6 @@ public class SentenceDB {
 			// SQL-Befehl wird ausgeführt
 			successful = myPreparedStatement.executeUpdate();
 
-			// offene Verbindungen werden geschlossen
-			closeConnections();
-
 			return successful;
 
 		} catch (Exception e) {
@@ -101,11 +98,11 @@ public class SentenceDB {
 					"Datenbank-Fehler beim Abspeichern eines Datensatzes",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
 			successful = 0;
-			closeConnections();
+
 			return successful;
 
 		} finally {
-			closeConnections();
+//			closeConnections();
 		}
 	}
 
@@ -142,18 +139,29 @@ public class SentenceDB {
 			myResultSet = findByID(randomObjektID);
 			if (myResultSet.next()) {
 				randomObjekt = myResultSet.getString(2);
+				// Wird ein Datensatz aus der Tabelle gelöscht, entsteht in der
+				// ID-Numerierung eine Lücke und liefert "null" zurück 
+				if (randomObjekt == null) {
+					randomObjekt = "Maus";		
+				}
 			}
 
 			// Ein Random-Verb aus der Tabelle holen
 			myResultSet = findByID(randomVerbID);
 			if (myResultSet.next()) {
 				randomVerb = myResultSet.getString(3);
+				if (randomVerb == null) {
+					randomVerb = "verletzt";		
+				}
 			}
 
 			// Ein Random-Complement aus der Tabelle holen
 			myResultSet = findByID(randomComplementID);
 			if (myResultSet.next()) {
 				randomComplement = myResultSet.getString(4);
+				if (randomComplement == null) {
+					randomComplement = "Katze";		
+				}
 			}
 
 			// Random Sentence zusammenstellen
@@ -168,7 +176,7 @@ public class SentenceDB {
 
 		} finally {
 			// offene Verbindungen werden geschlossen
-			SentenceDB.closeConnections();
+//			SentenceDB.closeConnections();
 		}
 
 		return randomSentence;
@@ -197,6 +205,37 @@ public class SentenceDB {
 		}
 
 		return myResultSet;
+	}
+
+	/**
+	 * Methode zum Löschen eines Datensatzes aus der Tabelle "sentences"
+	 * 
+	 * @param sentenceID
+	 * @return successful
+	 */
+	public static int deleteSentence(int sentenceID) {
+
+		try {
+
+			myPreparedStatement = connect
+					.prepareStatement("DELETE FROM sentence_database.sentences WHERE id = "
+							+ sentenceID + ";");
+
+			successful = myPreparedStatement.executeUpdate();
+
+			return successful;
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			JOptionPane.showMessageDialog(null,
+					"Datenbank-Fehler beim Löschen eines Datensatzes",
+					"Fehler", JOptionPane.ERROR_MESSAGE);
+			successful = 0;
+			return successful;
+
+		} finally {
+			closeConnections();
+		}
 	}
 
 	/**
