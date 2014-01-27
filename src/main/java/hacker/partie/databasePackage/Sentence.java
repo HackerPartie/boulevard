@@ -1,8 +1,8 @@
 package hacker.partie.databasePackage;
 
 /**
- * Die Klasse "Sentence" ist für die Erfassung und Rückgabe des Inhalts der
- * einzelnen Datensätze zuständig
+ * Die Klasse "Sentence" ist fÃ¼r die Erfassung und RÃ¼ckgabe des Inhalts der
+ * einzelnen DatensÃ¤tze zustÃ¤ndig
  * 
  * @author Bergsocke
  * 
@@ -15,7 +15,7 @@ public class Sentence {
 	private String sentenceComplement;
 
 	/**
-	 * Konstruktor für einen random Sentence
+	 * Konstruktor fÃ¼r einen random Sentence
 	 * 
 	 */
 	public Sentence() {
@@ -23,7 +23,7 @@ public class Sentence {
 	}
 
 	/**
-	 * Konstruktor für den Zugriff auf alle Tabellenfelder
+	 * Konstruktor fÃ¼r den Zugriff auf alle Tabellenfelder
 	 * 
 	 * @param sentenceID
 	 * @param sentenceObject
