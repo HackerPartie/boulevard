@@ -1,5 +1,4 @@
-CREATE DATABASE sentence_database;
-GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES, CREATE TEMPORARY TABLES ON `sentence_database`.* TO 'sentence_user'@'localhost' IDENTIFIED BY 'sentence_password';
+
 
 DROP TABLE IF EXISTS sentences
 
@@ -8,5 +7,7 @@ id int not null auto_increment, object VARCHAR(100), verb VARCHAR(100), compleme
 
 
 INSERT INTO sentences VALUES (default, 'Alko-Papa', 'zwang' , 'Sohn zum Autofahren');
+
 INSERT INTO sentences VALUES (default, 'Mops', 'ueberfaellt' , 'Fleischhauer');
+
 INSERT INTO sentences VALUES (default, 'Grossbrand', 'zerstoert' , 'UNESCO-Weltkulturerbe');
