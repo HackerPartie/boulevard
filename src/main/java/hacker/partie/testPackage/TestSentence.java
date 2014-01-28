@@ -54,7 +54,7 @@ public class TestSentence {
 		try {
 			connect = DatabaseConnection.connectDB();
 
-			// Alle Datens�tze anzeigen
+			// Alle Datensätze anzeigen
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentence_database.sentences;");
 			myResultSet = myPreparedStatement.executeQuery();
