@@ -30,7 +30,7 @@
 <body>
 	<div class="container">
 		<!--  should be replace with real java code -->
-		<% // out.print(Sentence.random());%>
+		<% // out.print(myRandomSentence);%>
 		<h1>Alko papa entreißt UNESCO-Weltkulturerbe</h1>		
 	</div>
 </body>
