@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 /**
  * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
  * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences". Weiters
@@ -55,9 +53,6 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
-					"Fehler", JOptionPane.ERROR_MESSAGE);
 
 		} finally {
 			// offene Verbindungen werden geschlossen
@@ -96,9 +91,7 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Datenbank-Fehler beim Abspeichern eines Datensatzes",
-					"Fehler", JOptionPane.ERROR_MESSAGE);
+
 			return successful = false;
 
 		} finally {
@@ -170,15 +163,12 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
-					"Fehler", JOptionPane.ERROR_MESSAGE);
 
 		} finally {
 			// offene Verbindungen werden geschlossen
 			// SentenceDB.closeConnections();
 		}
-		
+
 		return randomSentence;
 	}
 
@@ -199,9 +189,6 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
-					"Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 
 		return myResultSet;
@@ -228,9 +215,7 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Datenbank-Fehler beim Löschen eines Datensatzes",
-					"Fehler", JOptionPane.ERROR_MESSAGE);
+
 			return successful = false;
 
 		} finally {
@@ -258,9 +243,6 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			JOptionPane.showMessageDialog(null,
-					"Verbindungen konnten nicht geschlossen werden.", "Fehler",
-					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
