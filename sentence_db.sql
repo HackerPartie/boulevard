@@ -8,7 +8,9 @@ id int not null auto_increment, object VARCHAR(100), verb VARCHAR(100), compleme
 
 INSERT INTO sentences VALUES (default, 'Alko-Papa', 'zwang' , 'Sohn zum Autofahren');
 
-INSERT INTO sentences VALUES (default, 'Mops', 'ueberfaellt' , 'Fleischhauer');
+INSERT INTO sentences VALUES (default, 'Mann', 'entreisst' , 'Polizist Pistole und schiesst');
 
 INSERT INTO sentences VALUES (default, 'Grossbrand', 'zerstoert' , 'UNESCO-Weltkulturerbe');
+
+INSERT INTO sentences VALUES (default, 'Islamist', 'droht' , 'mit Olympia Terror');
 
