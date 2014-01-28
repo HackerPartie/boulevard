@@ -1,11 +1,15 @@
-package hacker.partie.databasePackage;
+package hacker.partie.testPackage;
+
+import hacker.partie.databasePackage.DatabaseConnection;
+import hacker.partie.databasePackage.Sentence;
+import hacker.partie.databasePackage.SentenceDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * Klasse mit Main-Methode zum Testen
+ * Klasse mit Main-Methode zum Testen (Consolenausgabe)
  * 
  */
 
@@ -15,20 +19,42 @@ public class TestSentence {
 	private static PreparedStatement myPreparedStatement = null;
 	private static ResultSet myResultSet = null;
 
+	/**
+	 * Main-Methode
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		// Alle Datensätze und einen Random Sentence anzeigen
+		displayAllTest();
+
+		// Test-Sentences
+		Sentence sentenceTest1 = new Sentence("Piraten", "erobern",
+				"Luxus-Schiff");
+		Sentence sentenceTest2 = new Sentence("Fans", "stürmen", "Station");
+
+		// Sentences speichern
+		SentenceDB.saveSentence(sentenceTest1);
+		SentenceDB.saveSentence(sentenceTest2);
+
+		displayAllTest();
+
+		// Sentence löschen
+		SentenceDB.deleteSentence(2);
+
 		displayAllTest();
 
 	}
 
 	/**
-	 * Es werden alle vorhandenen Datens�tze der Tabelle "sentences" angezeit
+	 * Es werden alle vorhandenen Datensätze der Tabelle "sentences" angezeigt
 	 * und ein Random-Sentence gebildet (Consolenausgabe)
 	 */
 	public static void displayAllTest() {
 		try {
 			connect = DatabaseConnection.connectDB();
 
-			// Alle Datens�tze anzeigen
+			// Alle Datensätze anzeigen
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentence_database.sentences;");
 			myResultSet = myPreparedStatement.executeQuery();
@@ -48,11 +74,10 @@ public class TestSentence {
 			System.out.println(mySentence.getSentenceObject() + " "
 					+ mySentence.getSentenceVerb() + " "
 					+ mySentence.getSentenceComplement());
-			
-			SentenceDB.closeConnections();
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
 	}
+
 }

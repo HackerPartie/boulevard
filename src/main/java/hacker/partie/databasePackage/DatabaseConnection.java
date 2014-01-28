@@ -55,7 +55,7 @@ public class DatabaseConnection {
 			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null,
 					"Datenbankverbindung konnte nicht hergestellt werden. "
-							+ "Bitte prüfen Sie, ob der MySQL-Server läuft.",
+							+ "Bitte prÃ¼fen Sie, ob der MySQL-Server lÃ¤uft.",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 		return connect;

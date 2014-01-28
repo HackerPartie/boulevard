@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
- * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences". Weiters
- * bietet sie die Möglichkeit zur Erstellung eines zufällig zusammengestelten
+ * Anzeigen und Speichern von DatensÃ¤tzen aus der Tabelle "sentences". Weiters
+ * bietet sie die MÃ¶glichkeit zur Erstellung eines zufÃ¤llig zusammengestellten
  * Sentence.
  * 
  * @author Bergsocke
@@ -22,12 +22,13 @@ public class SentenceDB {
 	private static Connection connect = null;
 	private static PreparedStatement myPreparedStatement = null;
 	private static ResultSet myResultSet = null;
-	// Variable, die anzeigen soll, ob das Speichern, Updaten oder Löschen eines
-	// Datensatzes erfolgreich war
-	public static int successful = 0;
+	// Variablen, die anzeigen sollen, ob das Speichern, Updaten oder LÃ¶schen
+	// eines Datensatzes erfolgreich war
+	public static int execute = 0;
+	public static boolean successful = false;
 
 	/**
-	 * Es werden alle Datensätze, die in der Tabelle "sentences" vorhanden sind,
+	 * Es werden alle DatensÃ¤tze, die in der Tabelle "sentences" vorhanden sind,
 	 * angezeigt
 	 * 
 	 * @return sentenceList
@@ -39,11 +40,11 @@ public class SentenceDB {
 		List<Sentence> sentenceList = new ArrayList<Sentence>();
 
 		try {
-			// PreparedStatement für den SQL-Befehl
+			// PreparedStatement fÃ¼r den SQL-Befehl
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentence_database.sentences;");
 
-			// SQL-Befehl wird ausgeführt
+			// SQL-Befehl wird ausgefÃ¼hrt
 			myResultSet = myPreparedStatement.executeQuery();
 
 			while (myResultSet.next()) {
@@ -55,7 +56,7 @@ public class SentenceDB {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
+					"Datenbankabfrage konnte nicht durchgefÃ¼hrt werden.",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
 
 		} finally {
@@ -72,12 +73,12 @@ public class SentenceDB {
 	 * @param sentenceToSave
 	 * @return successful
 	 */
-	public static int saveSentence(Sentence sentenceToSave) {
+	public static boolean saveSentence(Sentence sentenceToSave) {
 
 		try {
 			connect = DatabaseConnection.connectDB();
 
-			// PreparedStatement für SQL-Befehl
+			// PreparedStatement fÃ¼r SQL-Befehl
 			myPreparedStatement = connect
 					.prepareStatement("INSERT INTO sentence_database.sentences VALUES(default,?, ?, ?)");
 
@@ -87,12 +88,10 @@ public class SentenceDB {
 			myPreparedStatement.setString(3,
 					sentenceToSave.getSentenceComplement());
 
-			// SQL-Befehl wird ausgeführt
-			successful = myPreparedStatement.executeUpdate();
+			// SQL-Befehl wird ausgefÃ¼hrt
+			execute = myPreparedStatement.executeUpdate();
 
-			// offene Verbindungen werden geschlossen
-			closeConnections();
-
+			successful = (execute != 0);
 			return successful;
 
 		} catch (Exception e) {
@@ -100,17 +99,15 @@ public class SentenceDB {
 			JOptionPane.showMessageDialog(null,
 					"Datenbank-Fehler beim Abspeichern eines Datensatzes",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
-			successful = 0;
-			closeConnections();
-			return successful;
+			return successful = false;
 
 		} finally {
-			closeConnections();
+			// closeConnections();
 		}
 	}
 
 	/**
-	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
+	 * Methode zum Erstellen eines zufÃ¤llig zusammengesetzten Sentence aus den
 	 * Tabellenfeldern der Tabelle "sentences"
 	 * 
 	 * @return randomSentence
@@ -125,7 +122,7 @@ public class SentenceDB {
 		Sentence randomSentence = new Sentence();
 
 		try {
-			// Anzahl der vorhandenen Datensätze ermitteln
+			// Anzahl der vorhandenen DatensÃ¤tze ermitteln
 			myPreparedStatement = connect
 					.prepareStatement("SELECT COUNT(*) AS count FROM sentence_database.sentences");
 			myResultSet = myPreparedStatement.executeQuery();
@@ -133,7 +130,7 @@ public class SentenceDB {
 				numRows = myResultSet.getInt("count");
 			}
 
-			// Random-Zahl von 1 bis Anzahl der Datensätze
+			// Random-Zahl von 1 bis Anzahl der DatensÃ¤tze
 			int randomObjektID = 1 + (int) (Math.random() * numRows);
 			int randomVerbID = 1 + (int) (Math.random() * numRows);
 			int randomComplementID = 1 + (int) (Math.random() * numRows);
@@ -142,18 +139,29 @@ public class SentenceDB {
 			myResultSet = findByID(randomObjektID);
 			if (myResultSet.next()) {
 				randomObjekt = myResultSet.getString(2);
+				// Wird ein Datensatz aus der Tabelle gelÃ¶scht, entsteht in der
+				// ID-Numerierung eine LÃ¼cke und liefert "null" zurÃ¼ck
+				if (randomObjekt == null) {
+					randomObjekt = "Maus";
+				}
 			}
 
 			// Ein Random-Verb aus der Tabelle holen
 			myResultSet = findByID(randomVerbID);
 			if (myResultSet.next()) {
 				randomVerb = myResultSet.getString(3);
+				if (randomVerb == null) {
+					randomVerb = "verletzt";
+				}
 			}
 
 			// Ein Random-Complement aus der Tabelle holen
 			myResultSet = findByID(randomComplementID);
 			if (myResultSet.next()) {
 				randomComplement = myResultSet.getString(4);
+				if (randomComplement == null) {
+					randomComplement = "Katze";
+				}
 			}
 
 			// Random Sentence zusammenstellen
@@ -163,14 +171,14 @@ public class SentenceDB {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
+					"Datenbankabfrage konnte nicht durchgefÃ¼hrt werden.",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
 
 		} finally {
 			// offene Verbindungen werden geschlossen
-			SentenceDB.closeConnections();
+			// SentenceDB.closeConnections();
 		}
-
+		
 		return randomSentence;
 	}
 
@@ -192,7 +200,7 @@ public class SentenceDB {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			JOptionPane.showMessageDialog(null,
-					"Datenbankabfrage konnte nicht durchgeführt werden.",
+					"Datenbankabfrage konnte nicht durchgefÃ¼hrt werden.",
 					"Fehler", JOptionPane.ERROR_MESSAGE);
 		}
 
@@ -200,7 +208,38 @@ public class SentenceDB {
 	}
 
 	/**
-	 * Methode zum Schließen aller offenen Verbindungen
+	 * Methode zum LÃ¶schen eines Datensatzes aus der Tabelle "sentences"
+	 * 
+	 * @param sentenceID
+	 * @return successful
+	 */
+	public static boolean deleteSentence(int sentenceID) {
+
+		try {
+
+			myPreparedStatement = connect
+					.prepareStatement("DELETE FROM sentence_database.sentences WHERE id = "
+							+ sentenceID + ";");
+
+			execute = myPreparedStatement.executeUpdate();
+
+			successful = (execute != 0);
+			return successful;
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			JOptionPane.showMessageDialog(null,
+					"Datenbank-Fehler beim LÃ¶schen eines Datensatzes",
+					"Fehler", JOptionPane.ERROR_MESSAGE);
+			return successful = false;
+
+		} finally {
+			closeConnections();
+		}
+	}
+
+	/**
+	 * Methode zum SchlieÃŸen aller offenen Verbindungen
 	 */
 	public static void closeConnections() {
 		try {
