@@ -20,7 +20,18 @@ public class SentenceServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Sentence sentence = SentenceDB.createRandomSentence();
-		request.setAttribute("sentence", sentence);
+		
+		// this does not work in the jsp  
+		request.setAttribute("boulevardTitle", sentence);
+		
+		// send a string to the jsp containaing our 
+		String randomTitle = sentence.getSentenceObject() + " "
+				+ sentence.getSentenceVerb() + " "
+				+ sentence.getSentenceComplement();
+		
+		request.setAttribute("boulevardHeader", randomTitle);
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		
