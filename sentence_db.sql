@@ -18,7 +18,7 @@ INSERT INTO sentences VALUES (default, 'Beyonce', 'versext' , 'die Grammys');
 
 INSERT INTO sentences VALUES (default, 'Bim-Fahrer', 'überlebt' , 'ihre Attacke');
 
-INSERT INTO sentences VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Etrinken');
+INSERT INTO sentences VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Ertrinken');
 
 
 
