@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="hacker.partie.databasePackage.Sentence" %>	
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +19,8 @@
 		}
 
 		h1 {
-			font-size: 150px !important;
-			font-family: 'Bree Serif', serif;
-			font-weight: 400;
+			font-size: 75px !important;
+			font-family: 'Bree Serif', serif;						
 		}
 	</style>
 
@@ -29,9 +29,14 @@
 
 <body>
 	<div class="container">
-		<!--  should be replace with real java code -->
-		<% // out.print(myRandomSentence);%>
-		<h1>Alko papa entreißt UNESCO-Weltkulturerbe</h1>		
+		<h1 class="text-center"class="pagination-centered" >
+		<%
+		// this is not working, getVerb is not recognized as a valid method
+		//	out.println(request.getAttribute("boulevardTitle").getVerb());
+		%>
+		
+		<% out.println(request.getAttribute("boulevardHeader"));%>
+		</h1>		
 	</div>
 </body>
 </html>
