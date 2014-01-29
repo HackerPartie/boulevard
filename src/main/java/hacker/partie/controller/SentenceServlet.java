@@ -20,6 +20,7 @@ public class SentenceServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Sentence sentence = SentenceDB.createRandomSentence();
+		System.out.println(sentence);
 		
 		// this does not work in the jsp  
 		request.setAttribute("boulevardTitle", sentence);
