@@ -14,3 +14,11 @@ INSERT INTO sentences VALUES (default, 'Grossbrand', 'zerstoert' , 'UNESCO-Weltk
 
 INSERT INTO sentences VALUES (default, 'Islamist', 'droht' , 'mit Olympia Terror');
 
+INSERT INTO sentences VALUES (default, 'Beyonce', 'versext' , 'die Grammys');
+
+INSERT INTO sentences VALUES (default, 'Bim-Fahrer', 'überlebt' , 'ihre Attacke');
+
+INSERT INTO sentences VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Etrinken');
+
+
+
