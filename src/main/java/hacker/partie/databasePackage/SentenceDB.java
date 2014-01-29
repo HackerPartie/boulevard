@@ -168,7 +168,7 @@ public class SentenceDB {
 			// offene Verbindungen werden geschlossen
 			// SentenceDB.closeConnections();
 		}
-
+		System.out.println(randomSentence);
 		return randomSentence;
 	}
 
