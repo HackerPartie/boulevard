@@ -32,8 +32,6 @@ public class DatabaseConnection {
 				// load a properties file from class path, inside static method
 				myProperties.load(DatabaseConnection.class.getClassLoader()
 						.getResourceAsStream("database.properties"));
-				
-//				myProperties.load(new FileInputStream("/home/jens/workspace/examples/javaKurs/boulevard/config/database.properties"));
 
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -43,11 +41,6 @@ public class DatabaseConnection {
 			String connectionURL = myProperties.getProperty("jdbc.url");
 			String username = myProperties.getProperty("jdbc.username");
 			String password = myProperties.getProperty("jdbc.password");
-			
-			System.out.println("properties: ");
-			System.out.println(connectionURL);
-			System.out.println(username);
-			System.out.println(password);
 
 			Class.forName(drivers);
 
