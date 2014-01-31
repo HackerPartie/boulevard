@@ -1,4 +1,4 @@
-package hacker.partie.database;
+package hacker.partie.model;
 
 /**
  * Die Klasse "Sentence" ist für die Erfassung und Rückgabe des Inhalts der

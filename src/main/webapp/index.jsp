@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="hacker.partie.database.Sentence" %>	
+<%@ page import="hacker.partie.model.Sentence" %>	
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
