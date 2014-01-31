@@ -1,7 +1,7 @@
 package hacker.partie.test;
 
-import hacker.partie.database.Sentence;
-import hacker.partie.database.SentenceDB;
+import hacker.partie.model.Sentence;
+import hacker.partie.model.SentenceDB;
 
 public class RandomSentenceTest {
 

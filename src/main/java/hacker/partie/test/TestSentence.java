@@ -1,8 +1,8 @@
 package hacker.partie.test;
 
-import hacker.partie.database.DatabaseConnection;
-import hacker.partie.database.Sentence;
-import hacker.partie.database.SentenceDB;
+import hacker.partie.model.DatabaseConnection;
+import hacker.partie.model.Sentence;
+import hacker.partie.model.SentenceDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
