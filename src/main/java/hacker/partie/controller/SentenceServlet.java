@@ -15,24 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/sentence")
 public class SentenceServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		Sentence sentence = SentenceDB.createRandomSentence();
-		System.out.println(sentence);
-		
-		// this does not work in the jsp  
-		request.setAttribute("boulevardTitle", sentence);
-		
-		// send a string to the jsp containaing our 
-		String randomTitle = sentence.getSentenceObject() + " "
-				+ sentence.getSentenceVerb() + " "
-				+ sentence.getSentenceComplement();
-		
-		request.setAttribute("boulevardHeader", randomTitle);
-		
-		
+			
+		request.setAttribute("junkTitle", sentence);
+				
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		
