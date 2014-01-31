@@ -34,11 +34,15 @@
 	<div class="container">
 		<h1 class="text-center"class="pagination-centered" >
 		<%
-		// this is not working, getVerb is not recognized as a valid method
-		//	out.println(request.getAttribute("boulevardTitle").getVerb());
+		
+		Sentence mySentence = (Sentence) request.getAttribute("boulevardTitle");
+		
+		out.println(mySentence.getSentenceObject() + " "
+				+ mySentence.getSentenceVerb() + " "
+				+ mySentence.getSentenceComplement());
 		%>
 		
-		<% out.println(request.getAttribute("boulevardHeader"));%>
+		<% //out.println(request.getAttribute("boulevardHeader"));%>
 		</h1>		
 	</div>
 </body>
