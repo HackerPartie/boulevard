@@ -1,6 +1,5 @@
-package hacker.partie.databasePackage;
+package hacker.partie.database;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
