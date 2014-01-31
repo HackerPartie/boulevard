@@ -1,7 +1,7 @@
 package hacker.partie.controller;
 
-import hacker.partie.databasePackage.Sentence;
-import hacker.partie.databasePackage.SentenceDB;
+import hacker.partie.model.Sentence;
+import hacker.partie.model.SentenceDB;
 
 import java.io.IOException;
 
@@ -21,10 +21,9 @@ public class SentenceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		Sentence sentence = SentenceDB.createRandomSentence();
-			
-		request.setAttribute("junkTitle", sentence);
-				
+		Sentence sentence = SentenceDB.createRandom();
+		request.setAttribute("randomJunk", sentence);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 		

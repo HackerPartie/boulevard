@@ -1,8 +1,8 @@
-package hacker.partie.testPackage;
+package hacker.partie.test;
 
-import hacker.partie.databasePackage.DatabaseConnection;
-import hacker.partie.databasePackage.Sentence;
-import hacker.partie.databasePackage.SentenceDB;
+import hacker.partie.model.DatabaseConnection;
+import hacker.partie.model.Sentence;
+import hacker.partie.model.SentenceDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,13 +34,13 @@ public class TestSentence {
 		Sentence sentenceTest2 = new Sentence("Fans", "stürmen", "Station");
 
 		// Sentences speichern
-		SentenceDB.saveSentence(sentenceTest1);
-		SentenceDB.saveSentence(sentenceTest2);
+		SentenceDB.save(sentenceTest1);
+		SentenceDB.save(sentenceTest2);
 
 		displayAllTest();
 
 		// Sentence löschen
-		SentenceDB.deleteSentence(2);
+		SentenceDB.delete(2);
 
 		displayAllTest();
 
@@ -69,11 +69,11 @@ public class TestSentence {
 			}
 
 			// Random Sentence erstellen
-			Sentence mySentence = SentenceDB.createRandomSentence();
+			Sentence mySentence = SentenceDB.createRandom();
 			System.out.println("\nZufallssatz:");
-			System.out.println(mySentence.getSentenceObject() + " "
-					+ mySentence.getSentenceVerb() + " "
-					+ mySentence.getSentenceComplement());
+			System.out.println(mySentence.getObject() + " "
+					+ mySentence.getVerb() + " "
+					+ mySentence.getComplement());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());

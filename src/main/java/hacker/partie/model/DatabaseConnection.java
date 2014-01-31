@@ -1,6 +1,5 @@
-package hacker.partie.databasePackage;
+package hacker.partie.model;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
@@ -30,10 +29,8 @@ public class DatabaseConnection {
 
 			try {
 				// load a properties file from class path, inside static method
-//				myProperties.load(DatabaseConnection.class.getClassLoader()
-//						.getResourceAsStream("database.properties"));
-				
-				myProperties.load(new FileInputStream("*****"));
+				myProperties.load(DatabaseConnection.class.getClassLoader()
+						.getResourceAsStream("database.properties"));
 
 			} catch (Exception e) {
 				System.out.println(e.toString());
@@ -43,11 +40,6 @@ public class DatabaseConnection {
 			String connectionURL = myProperties.getProperty("jdbc.url");
 			String username = myProperties.getProperty("jdbc.username");
 			String password = myProperties.getProperty("jdbc.password");
-			
-			System.out.println("properties: ");
-			System.out.println(connectionURL);
-			System.out.println(username);
-			System.out.println(password);
 
 			Class.forName(drivers);
 

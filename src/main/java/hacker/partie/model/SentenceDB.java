@@ -1,4 +1,4 @@
-package hacker.partie.databasePackage;
+package hacker.partie.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public class SentenceDB {
 	 * 
 	 * @return sentenceList
 	 */
-	public static List<Sentence> findAllSenctences() {
+	public static List<Sentence> findAll() {
 
 		connect = DatabaseConnection.connectDB();
 
@@ -65,10 +65,10 @@ public class SentenceDB {
 	/**
 	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle "sentences"
 	 * 
-	 * @param sentenceToSave
+	 * @param toSave
 	 * @return successful
 	 */
-	public static boolean saveSentence(Sentence sentenceToSave) {
+	public static boolean save(Sentence toSave) {
 
 		try {
 			connect = DatabaseConnection.connectDB();
@@ -77,11 +77,9 @@ public class SentenceDB {
 			myPreparedStatement = connect
 					.prepareStatement("INSERT INTO sentence_database.sentences VALUES(default,?, ?, ?)");
 
-			myPreparedStatement
-					.setString(1, sentenceToSave.getSentenceObject());
-			myPreparedStatement.setString(2, sentenceToSave.getSentenceVerb());
-			myPreparedStatement.setString(3,
-					sentenceToSave.getSentenceComplement());
+			myPreparedStatement.setString(1, toSave.getObject());
+			myPreparedStatement.setString(2, toSave.getVerb());
+			myPreparedStatement.setString(3, toSave.getComplement());
 
 			// SQL-Befehl wird ausgeführt
 			execute = myPreparedStatement.executeUpdate();
@@ -105,14 +103,14 @@ public class SentenceDB {
 	 * 
 	 * @return randomSentence
 	 */
-	public static Sentence createRandomSentence() {
+	public static Sentence createRandom() {
 
 		connect = DatabaseConnection.connectDB();
 		int numRows = 0;
 		String randomObjekt = null;
 		String randomVerb = null;
 		String randomComplement = null;
-		Sentence randomSentence = new Sentence();
+		Sentence random = new Sentence();
 
 		try {
 			// Anzahl der vorhandenen Datensätze ermitteln
@@ -158,7 +156,7 @@ public class SentenceDB {
 			}
 
 			// Random Sentence zusammenstellen
-			randomSentence = new Sentence(randomObjekt, randomVerb,
+			random = new Sentence(randomObjekt, randomVerb,
 					randomComplement);
 
 		} catch (Exception e) {
@@ -168,8 +166,8 @@ public class SentenceDB {
 			// offene Verbindungen werden geschlossen
 			// SentenceDB.closeConnections();
 		}
-		System.out.println(randomSentence);
-		return randomSentence;
+
+		return random;
 	}
 
 	/**
@@ -197,16 +195,16 @@ public class SentenceDB {
 	/**
 	 * Methode zum Löschen eines Datensatzes aus der Tabelle "sentences"
 	 * 
-	 * @param sentenceID
+	 * @param id
 	 * @return successful
 	 */
-	public static boolean deleteSentence(int sentenceID) {
+	public static boolean delete(int id) {
 
 		try {
 
 			myPreparedStatement = connect
 					.prepareStatement("DELETE FROM sentence_database.sentences WHERE id = "
-							+ sentenceID + ";");
+							+ id + ";");
 
 			execute = myPreparedStatement.executeUpdate();
 
