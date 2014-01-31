@@ -7,4 +7,3 @@ bin/
 target/
 config/
 src/main/resources/database.properties
-
