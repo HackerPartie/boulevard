@@ -40,7 +40,7 @@ public class SentenceDB {
 		try {
 			// PreparedStatement für den SQL-Befehl
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentence_database.sentences;");
+					.prepareStatement("SELECT * FROM sentences;");
 
 			// SQL-Befehl wird ausgeführt
 			myResultSet = myPreparedStatement.executeQuery();
@@ -75,7 +75,7 @@ public class SentenceDB {
 
 			// PreparedStatement für SQL-Befehl
 			myPreparedStatement = connect
-					.prepareStatement("INSERT INTO sentence_database.sentences VALUES(default,?, ?, ?)");
+					.prepareStatement("INSERT INTO sentences VALUES(default,?, ?, ?)");
 
 			myPreparedStatement.setString(1, toSave.getObject());
 			myPreparedStatement.setString(2, toSave.getVerb());
@@ -115,7 +115,7 @@ public class SentenceDB {
 		try {
 			// Anzahl der vorhandenen Datensätze ermitteln
 			myPreparedStatement = connect
-					.prepareStatement("SELECT COUNT(*) AS count FROM sentence_database.sentences");
+					.prepareStatement("SELECT COUNT(*) AS count FROM sentences");
 			myResultSet = myPreparedStatement.executeQuery();
 			while (myResultSet.next()) {
 				numRows = myResultSet.getInt("count");
@@ -180,7 +180,7 @@ public class SentenceDB {
 	public static ResultSet findByID(int randomNumber) {
 		try {
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentence_database.sentences WHERE id = "
+					.prepareStatement("SELECT * FROM sentences WHERE id = "
 							+ randomNumber + ";");
 
 			myResultSet = myPreparedStatement.executeQuery();
@@ -203,7 +203,7 @@ public class SentenceDB {
 		try {
 
 			myPreparedStatement = connect
-					.prepareStatement("DELETE FROM sentence_database.sentences WHERE id = "
+					.prepareStatement("DELETE FROM sentences WHERE id = "
 							+ id + ";");
 
 			execute = myPreparedStatement.executeUpdate();
