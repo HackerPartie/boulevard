@@ -203,7 +203,7 @@ public class SentenceDB {
 		try {
 
 			myPreparedStatement = connect
-					.prepareStatement("DELETE FROM sentences_svc WHERE id = "
+					.prepareStatement("DELETE FROM sentences_svc WHERE id = "					
 							+ id + ";");
 
 			execute = myPreparedStatement.executeUpdate();
