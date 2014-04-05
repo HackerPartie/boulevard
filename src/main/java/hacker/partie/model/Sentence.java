@@ -10,7 +10,7 @@ package hacker.partie.model;
 
 public class Sentence {
 	private int id;
-	private String object;
+	private String subject;
 	private String verb;
 	private String complement;
 
@@ -26,14 +26,14 @@ public class Sentence {
 	 * Konstruktor für den Zugriff auf alle Tabellenfelder
 	 * 
 	 * @param id
-	 * @param object
+	 * @param subject
 	 * @param verb
 	 * @param complement
 	 */
-	public Sentence(int id, String object, String verb, String complement) {
+	public Sentence(int id, String subject, String verb, String complement) {
 
 		this.id = id;
-		this.object = object;
+		this.subject = subject;
 		this.verb = verb;
 		this.complement = complement;
 	}
@@ -41,13 +41,13 @@ public class Sentence {
 	/**
 	 * Konstruktor bei Neuanlage eines Datensatzes
 	 * 
-	 * @param object
+	 * @param subject
 	 * @param verb
 	 * @param complement
 	 */
-	public Sentence(String object, String verb, String complement) {
+	public Sentence(String subject, String verb, String complement) {
 
-		this.object = object;
+		this.subject = subject;
 		this.verb = verb;
 		this.complement = complement;
 	}
@@ -63,12 +63,12 @@ public class Sentence {
 		this.id = id;
 	}
 
-	public String getObject() {
-		return object;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setObject(String object) {
-		this.object = object;
+	public void setSubject(String Subject) {
+		this.subject = Subject;
 	}
 
 	public String getVerb() {

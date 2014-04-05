@@ -40,6 +40,7 @@ public class TestSentence {
 		displayAllTest();
 
 		// Sentence löschen
+		SentenceDB.save(sentenceTest1);
 		SentenceDB.delete(2);
 
 		displayAllTest();
@@ -56,22 +57,22 @@ public class TestSentence {
 
 			// Alle Datensätze anzeigen
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentence_database.sentences;");
+					.prepareStatement("SELECT * FROM sentences_svc;");
 			myResultSet = myPreparedStatement.executeQuery();
 
 			while (myResultSet.next()) {
 				int id = myResultSet.getInt(1);
-				String objekt = myResultSet.getString(2);
+				String subject = myResultSet.getString(2);
 				String verb = myResultSet.getString(3);
 				String complement = myResultSet.getString(4);
-				System.out.println(id + ": " + objekt + " " + verb + " "
+				System.out.println(id + ": " + subject + " " + verb + " "
 						+ complement);
 			}
 
 			// Random Sentence erstellen
 			Sentence mySentence = SentenceDB.createRandom();
 			System.out.println("\nZufallssatz:");
-			System.out.println(mySentence.getObject() + " "
+			System.out.println(mySentence.getSubject() + " "
 					+ mySentence.getVerb() + " "
 					+ mySentence.getComplement());
 

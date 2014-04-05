@@ -1,24 +1,22 @@
+DROP TABLE IF EXISTS sentences_svc;
 
+-- create a table containing our Subject - Verb - Complement sentences
+CREATE TABLE sentences_svc(
+id serial primary key, object VARCHAR(100), verb VARCHAR(100), complement VARCHAR(100));
 
-DROP TABLE IF EXISTS sentences;
+INSERT INTO sentences_svc VALUES (default, 'Alko-Papa', 'zwang' , 'Sohn zum Autofahren');
 
-CREATE TABLE sentences(
-id int not null auto_increment, object VARCHAR(100), verb VARCHAR(100), complement VARCHAR(100), PRIMARY KEY(id));
+INSERT INTO sentences_svc VALUES (default, 'Mann', 'entreisst' , 'Polizist Pistole und schiesst');
 
+INSERT INTO sentences_svc VALUES (default, 'Grossbrand', 'zerstoert' , 'UNESCO-Weltkulturerbe');
 
-INSERT INTO sentences VALUES (default, 'Alko-Papa', 'zwang' , 'Sohn zum Autofahren');
+INSERT INTO sentences_svc VALUES (default, 'Islamist', 'droht' , 'mit Olympia Terror');
 
-INSERT INTO sentences VALUES (default, 'Mann', 'entreisst' , 'Polizist Pistole und schiesst');
+INSERT INTO sentences_svc VALUES (default, 'Beyonce', 'versext' , 'die Grammys');
 
-INSERT INTO sentences VALUES (default, 'Grossbrand', 'zerstoert' , 'UNESCO-Weltkulturerbe');
+INSERT INTO sentences_svc VALUES (default, 'Bim-Fahrer', 'überlebt' , 'ihre Attacke');
 
-INSERT INTO sentences VALUES (default, 'Islamist', 'droht' , 'mit Olympia Terror');
-
-INSERT INTO sentences VALUES (default, 'Beyonce', 'versext' , 'die Grammys');
-
-INSERT INTO sentences VALUES (default, 'Bim-Fahrer', 'überlebt' , 'ihre Attacke');
-
-INSERT INTO sentences VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Ertrinken');
+INSERT INTO sentences_svc VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Ertrinken');
 
 
 

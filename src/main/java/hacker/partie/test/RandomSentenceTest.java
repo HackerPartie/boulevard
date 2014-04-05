@@ -11,7 +11,7 @@ public class RandomSentenceTest {
 	public static void main(String[] args) {
 		Sentence mySentence = SentenceDB.createRandom();
 		System.out.println("\nZufallssatz:");
-		System.out.println(mySentence.getObject() + " "
+		System.out.println(mySentence.getSubject() + " "
 				+ mySentence.getVerb() + " "
 				+ mySentence.getComplement());
 
