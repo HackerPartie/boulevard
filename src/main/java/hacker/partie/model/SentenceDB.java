@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
- * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences". Weiters
+ * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences_svc". Weiters
  * bietet sie die Möglichkeit zur Erstellung eines zufällig zusammengestellten
  * Sentence.
  * 
@@ -26,7 +26,7 @@ public class SentenceDB {
 	public static boolean successful = false;
 
 	/**
-	 * Es werden alle Datensätze, die in der Tabelle "sentences" vorhanden sind,
+	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden sind,
 	 * angezeigt
 	 * 
 	 * @return sentenceList
@@ -40,7 +40,7 @@ public class SentenceDB {
 		try {
 			// PreparedStatement für den SQL-Befehl
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentences;");
+					.prepareStatement("SELECT * FROM sentences_svc;");
 
 			// SQL-Befehl wird ausgeführt
 			myResultSet = myPreparedStatement.executeQuery();
@@ -63,7 +63,7 @@ public class SentenceDB {
 	}
 
 	/**
-	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle "sentences"
+	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle "sentences_svc"
 	 * 
 	 * @param toSave
 	 * @return successful
@@ -75,9 +75,9 @@ public class SentenceDB {
 
 			// PreparedStatement für SQL-Befehl
 			myPreparedStatement = connect
-					.prepareStatement("INSERT INTO sentences VALUES(default,?, ?, ?)");
+					.prepareStatement("INSERT INTO sentences_svc VALUES(default,?, ?, ?)");
 
-			myPreparedStatement.setString(1, toSave.getObject());
+			myPreparedStatement.setString(1, toSave.getSubject());
 			myPreparedStatement.setString(2, toSave.getVerb());
 			myPreparedStatement.setString(3, toSave.getComplement());
 
@@ -99,7 +99,7 @@ public class SentenceDB {
 
 	/**
 	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
-	 * Tabellenfeldern der Tabelle "sentences"
+	 * Tabellenfeldern der Tabelle "sentences_svc"
 	 * 
 	 * @return randomSentence
 	 */
@@ -115,7 +115,7 @@ public class SentenceDB {
 		try {
 			// Anzahl der vorhandenen Datensätze ermitteln
 			myPreparedStatement = connect
-					.prepareStatement("SELECT COUNT(*) AS count FROM sentences");
+					.prepareStatement("SELECT COUNT(*) AS count FROM sentences_svc");
 			myResultSet = myPreparedStatement.executeQuery();
 			while (myResultSet.next()) {
 				numRows = myResultSet.getInt("count");
@@ -171,7 +171,7 @@ public class SentenceDB {
 	}
 
 	/**
-	 * Ermittelt einen Datensatz aus der Tabelle "sentences" anhand einer
+	 * Ermittelt einen Datensatz aus der Tabelle "sentences_svc" anhand einer
 	 * Zufallszahl
 	 * 
 	 * @param randomNumber
@@ -180,7 +180,7 @@ public class SentenceDB {
 	public static ResultSet findByID(int randomNumber) {
 		try {
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentences WHERE id = "
+					.prepareStatement("SELECT * FROM sentences_svc WHERE id = "
 							+ randomNumber + ";");
 
 			myResultSet = myPreparedStatement.executeQuery();
@@ -193,7 +193,7 @@ public class SentenceDB {
 	}
 
 	/**
-	 * Methode zum Löschen eines Datensatzes aus der Tabelle "sentences"
+	 * Methode zum Löschen eines Datensatzes aus der Tabelle "sentences_svc"
 	 * 
 	 * @param id
 	 * @return successful
@@ -203,7 +203,7 @@ public class SentenceDB {
 		try {
 
 			myPreparedStatement = connect
-					.prepareStatement("DELETE FROM sentences WHERE id = "
+					.prepareStatement("DELETE FROM sentences_svc WHERE id = "
 							+ id + ";");
 
 			execute = myPreparedStatement.executeUpdate();

@@ -35,7 +35,7 @@
 <body>
 	<div class="container">
 		<h1 class="text-center pagination-centered" >		
-		${randomJunk.object}
+		${randomJunk.subject}
 		${randomJunk.verb}
 		${randomJunk.complement}		
 		</h1>		
