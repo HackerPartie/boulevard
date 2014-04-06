@@ -12,6 +12,7 @@
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Bree+Serif'
 	rel='stylesheet' type='text/css'>
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<script
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
@@ -33,6 +34,7 @@
 </head>
 
 <body>
+<%@include file="includes/navigation.jsp" %>
 	<div class="container">
 		<h1 class="text-center pagination-centered" >		
 		${randomJunk.subject}
