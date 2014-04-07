@@ -24,6 +24,7 @@
 <%@include file="includes/navigation.jsp" %>
 
 <div class="container">
+    ${error}
     <h4> register </h4>
     <br>
     <div class="form-group" style="width: 200px">
