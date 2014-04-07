@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -34,10 +33,14 @@ public class RegisterServlet extends HttpServlet {
         boolean cu = crudUserDao.doRegister(username, encryptedPassword);
 
         if (cu == true) {
-            response.sendRedirect("login");
+            //response.sendRedirect("login");
+            request.setAttribute("message", "yepp, you did it!! Now login!!");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("sign_in.jsp");
+            dispatcher.forward(request,response);
         } else {
-            PrintWriter out = response.getWriter();
-            out.println("<font style=red> something is wrong</font>");
+            request.setAttribute("error", "maybe this username is already in use a long time ago");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("sign_up.jsp");
+            dispatcher.forward(request,response);
         }
 
     }

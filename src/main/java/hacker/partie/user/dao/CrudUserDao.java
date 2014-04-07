@@ -4,8 +4,6 @@ import hacker.partie.model.DatabaseConnection;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,15 +14,15 @@ import java.sql.SQLException;
  */
 public class CrudUserDao {
 
-    public Cookie doLogin(String username, String password, HttpSession httpSession){
+    public boolean doLogin(String username, String password){
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         String u = null;
         String p = null;
         PasswordService passwordService = new DefaultPasswordService();
         Connection connection = DatabaseConnection.connectDB();
-        HttpSession session = httpSession;
-        String sessionId = session.getId();
+        boolean l;
+
 
         try {
             preparedStatement = connection.prepareStatement("select * from user_auth where username = ?");
@@ -45,13 +43,14 @@ public class CrudUserDao {
         }
 
         if (passwordService.passwordsMatch(password, p)) {
-            session.setAttribute("user", u);
-            Cookie cookie = new Cookie(u, sessionId);
-            cookie.setHttpOnly(true);
-            return cookie;
+            //session.setAttribute("user", u);
+            //Cookie cookie = new Cookie(u, sessionId);
+            //cookie.setHttpOnly(true);
+            l = true;
         } else {
-            return null;
+            l = false;
         }
+        return l;
     }
 
     public boolean doRegister(String username, String encryptedPassword) {
