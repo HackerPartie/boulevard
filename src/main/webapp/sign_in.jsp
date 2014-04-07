@@ -25,6 +25,8 @@
 <%@include file="includes/navigation.jsp" %>
 
 <div class="container">
+    ${error}
+    ${message}
     <h4> login </h4>
     <br>
     <div class="form-group" style="width: 200px">

@@ -45,9 +45,6 @@ public class DatabaseConnection {
 
 			connect = DriverManager.getConnection(connectionURL, username,
 					password);
-			
-			System.out.println("connect: ");
-			System.out.println(connect);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());

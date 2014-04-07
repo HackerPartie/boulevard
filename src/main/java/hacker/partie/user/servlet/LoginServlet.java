@@ -22,13 +22,21 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //super.doPost(request, response);
 
-        HttpSession httpSession = request.getSession();
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         CrudUserDao crudUserDao = new CrudUserDao();
-        Cookie cookie = crudUserDao.doLogin(username, password, httpSession);
-        response.addCookie(cookie);
-        response.sendRedirect("/sentence");
-
+        Boolean login = crudUserDao.doLogin(username, password);
+        if (login == true) {
+            session.setAttribute("user", username);
+            Cookie cookie = new Cookie(username, sessionId);
+            response.addCookie(cookie);
+            response.sendRedirect("/sentence");
+        } else {
+            request.setAttribute("error", "username or password is wrong");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("sign_in.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 }
