@@ -19,6 +19,10 @@ INSERT INTO sentences_svc VALUES (default, 'Bim-Fahrer', 'überlebt' , 'ihre Att
 
 INSERT INTO sentences_svc VALUES (default, 'Mama', 'rettete' , 'Sohn vor dem Ertrinken');
 
+INSERT INTO sentences_svc VALUES (default, 'Cobra', 'verhaftet' , 'Kiew-Milliardär');
+
+INSERT INTO sentences_svc VALUES (default, 'Mutter', 'schmuggelt' , 'Drogen im Kinderwagen');
+
 -- create a table containing our user and hashed password
 CREATE TABLE user_auth(
   id serial primary key,
