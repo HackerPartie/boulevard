@@ -3,14 +3,15 @@ package hacker.partie.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
- * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences_svc". Weiters
- * bietet sie die Möglichkeit zur Erstellung eines zufällig zusammengestellten
- * Sentence.
+ * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences_svc".
+ * Weiters bietet sie die Möglichkeit zur Erstellung eines zufällig
+ * zusammengestellten Sentence.
  * 
  * @author Bergsocke
  * 
@@ -26,8 +27,8 @@ public class SentenceDB {
 	public static boolean successful = false;
 
 	/**
-	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden sind,
-	 * angezeigt
+	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden
+	 * sind, angezeigt
 	 * 
 	 * @return sentenceList
 	 */
@@ -51,11 +52,10 @@ public class SentenceDB {
 						myResultSet.getString(4)));
 			}
 
-		} catch (Exception e) {
-			System.out.println(e.toString());
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
 
 		} finally {
-			// offene Verbindungen werden geschlossen
 			SentenceDB.closeConnections();
 		}
 
@@ -63,7 +63,8 @@ public class SentenceDB {
 	}
 
 	/**
-	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle "sentences_svc"
+	 * Methode zum Speichern eines neuen Datensatzes in die Tabelle
+	 * "sentences_svc"
 	 * 
 	 * @param toSave
 	 * @return successful
@@ -89,11 +90,10 @@ public class SentenceDB {
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
-
 			return successful = false;
 
 		} finally {
-			// closeConnections();
+			closeConnections();
 		}
 	}
 
@@ -156,15 +156,13 @@ public class SentenceDB {
 			}
 
 			// Random Sentence zusammenstellen
-			random = new Sentence(randomObjekt, randomVerb,
-					randomComplement);
+			random = new Sentence(randomObjekt, randomVerb, randomComplement);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 
 		} finally {
-			// offene Verbindungen werden geschlossen
-			// SentenceDB.closeConnections();
+			closeConnections();
 		}
 
 		return random;
@@ -203,7 +201,7 @@ public class SentenceDB {
 		try {
 
 			myPreparedStatement = connect
-					.prepareStatement("DELETE FROM sentences_svc WHERE id = "					
+					.prepareStatement("DELETE FROM sentences_svc WHERE id = "
 							+ id + ";");
 
 			execute = myPreparedStatement.executeUpdate();
@@ -224,7 +222,7 @@ public class SentenceDB {
 	/**
 	 * Methode zum Schließen aller offenen Verbindungen
 	 */
-	public static void closeConnections() {
+	private static void closeConnections() {
 		try {
 
 			if (myResultSet != null) {
