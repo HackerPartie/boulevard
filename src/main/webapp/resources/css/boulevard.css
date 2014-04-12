@@ -1,0 +1,18 @@
+/* Stylesheet für Boulevard */
+
+/* @font-face { */
+/*   font-family: 'Erpressung Normal'; */
+/*   src: url('http://www.fontsaddict.com/fontface/erpressung-normal.TTF'); */
+/* } */
+
+@font-face {
+  font-family: 'Erpressung Normal';
+  src: url('/resources/fonts/ERPRN___.TTF');
+}
+
+p#logo_text {
+	font-family: 'Erpressung normal';
+	font-size: 100px;
+	text-align: center;
+	color: #E2010F;
+}
