@@ -23,6 +23,8 @@ public class LoginServlet extends HttpServlet {
         //super.doPost(request, response);
 
         HttpSession session = request.getSession();
+        session.invalidate();
+        session = request.getSession(true);
         String sessionId = session.getId();
         String username = request.getParameter("username");
         String password = request.getParameter("password");

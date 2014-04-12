@@ -5,7 +5,7 @@
   Time: 7:26 PM
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
