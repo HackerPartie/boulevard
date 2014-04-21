@@ -13,33 +13,23 @@
 
 	<p id="logo_pic" align="center">
 		<img src="oesterreich.jpg" alt="Österreich"
-			title="Österreich ist-ur.org" width=550 height=80>
+			title="Österreich ist-ur.org" width=500 height=70>
 	</p>
 
 	<p id="logo_text">
-		<font color="blue">i</font><font color="yellow">s</font><font
-			color="green">t</font><font color="black">-</font>u<font
-			color="yellow">r</font>.o<font color="green">r</font><font
-			color="blue">g</font>
+		<font color="black">i</font><font color="white">S</font><font
+			color="green">T</font><font color="black">-</font>U<font
+			color="yellow">R</font><font color="black">.</font><font
+			color=#E2010F>o</font><font color="white">R</font><font color="black">G</font>
 	</p>
 
 	<%@include file="includes/navigation.jsp"%>
 
-<!-- 	<div class="container"> -->
-<!-- 		<h1 class="text-center pagination-centered"> -->
-<%-- 			${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement}</h1> --%>
-<!-- 	</div> -->
 
-	<div id="schlagzeile">
-		<p>${randomJunk.subject} ${randomJunk.verb}
-			${randomJunk.complement}
-		<p>
+	<div class="container">
+		<h1 class="text-center pagination-centered">
+			${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement}</h1>
 	</div>
-
-<!-- 	<div id="schlagzeile2"> -->
-<%-- 		<p>${randomJunk.subject}${randomJunk.verb} --%>
-<%-- 			${randomJunk.complement} --%>
-<!-- 		<p> -->
-<!-- 	</div> -->
+	
 </body>
 </html>

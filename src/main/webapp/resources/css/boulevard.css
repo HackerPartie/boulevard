@@ -1,22 +1,17 @@
-/* Stylesheet für Boulevard */
-
-/* @font-face { */
-/*   font-family: 'Erpressung Normal'; */
-/*   src: url('http://www.fontsaddict.com/fontface/erpressung-normal.TTF'); */
-/* } */
+/* ======================================================================== 
+   Stylesheet für Boulevard (Österreich ist-ur.org)
+   
+   Datei: boulevard.css
+   Datum: 19.04.2014
+   Autor: Bergsocke
+   
+   Eingebundene Schriftarten:
+   'Erpressung Normal'
+   Quelle: http://www.fontsaddict.com/fontface/erpressung-normal.TTF  
+   ======================================================================= */
 @font-face {
 	font-family: 'Erpressung Normal';
 	src: url('/resources/fonts/ERPRN___.TTF');
-}
-
-@font-face {
-	font-family: 'Bohemian typewriter';
-	src: url('/resources/fonts/Bohemian typewriter.ttf');
-}
-
-@font-face {
-	font-family: '1942';
-	src: url('/resources/fonts/1942.ttf');
 }
 
 p#logo_pic {
@@ -27,22 +22,8 @@ p#logo_text {
 	font-family: 'Erpressung normal';
 	font-size: 80px;
 	text-align: center;
-	color: #E2010F;
 }
 
-div#schlagzeile {
-	font-family: 'Bohemian typewriter'; 
-	text-align : center;
-	color: #333333;
-	font-size: 60px;
-	text-align: center;
-}
-
-div#schlagzeile2 {
-	font-family: '1942'; 
-	text-align : center;
-	color: #333333;
-	font-size: 55px;
-	font-weight: bold;
-	text-align: center;
-}
+/* =====================================================================
+	ENDE DES STYLESHEETS
+   ===================================================================== */
