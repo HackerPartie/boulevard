@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <!-- Einbinden von selbst erstellten Boulevard-Stylesheet -->
-<link href="resources/css/boulevard.css" rel="stylesheet" media="screen">
+<link href="resources/css/boulevard.css" rel="stylesheet" type="text/css">
 
 <link rel="stylesheet"
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
