@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
 <head>
 <%@include file="includes/common-header.jsp"%>
 <title>List all sentences</title>
 </head>
 <body>
-Here the list of all sentences
+	<%@include file="includes/navigation.jsp"%>
+	Here the list of all sentences
 </body>
 </html>

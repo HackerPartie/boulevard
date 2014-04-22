@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/sentence">Boulevard ist ur org</a>
+            <a class="navbar-brand" href="/random">Boulevard ist ur org</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,7 +64,10 @@
                 </li>
                 -->
                 <% if (request.getAttribute("u") != null ) { %>
+                    <li><a href="add.jsp">Add Headline</a></li>
+                    <li><a href="listall.jsp">List Headlines</a></li>
                     <li><a href="#"><%= request.getAttribute("u") %></a></li>
+
                     <li><a href="logout">logout</a></li>
                 <% } else if (request.getAttribute("u") == null) { %>
                     <li><a href="login">login</a></li>
