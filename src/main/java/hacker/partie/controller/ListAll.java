@@ -24,7 +24,6 @@ public class ListAll extends HttpServlet {
 		List<Sentence> listAll = SentenceDB.findAll();
 		Sentence sentence = SentenceDB.createRandom();
 		request.setAttribute("listAll", listAll);
-		request.setAttribute("randomJunk", sentence);
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("listall.jsp");
