@@ -22,7 +22,6 @@ public class ListAll extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		List<Sentence> listAll = SentenceDB.findAll();
-		Sentence sentence = SentenceDB.createRandom();
 		request.setAttribute("listAll", listAll);
 
 		RequestDispatcher dispatcher = request
