@@ -20,8 +20,11 @@ public class ListAll extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		List<Sentence> fullList = SentenceDB.findAll();
-		request.setAttribute("fullList", fullList);
+		
+		List<Sentence> listAll = SentenceDB.findAll();
+		Sentence sentence = SentenceDB.createRandom();
+		request.setAttribute("listAll", listAll);
+		request.setAttribute("randomJunk", sentence);
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("listall.jsp");
