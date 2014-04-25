@@ -5,7 +5,7 @@
   Time: 7:26 PM
   To change this template use File | Settings | File Templates.
 --%>
-<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -64,8 +64,8 @@
                 </li>
                 -->
                 <% if (request.getAttribute("u") != null ) { %>
-                    <li><a href="add.jsp">Add Headline</a></li>
-                    <li><a href="listall.jsp">List Headlines</a></li>
+                    <li><a href="add">Add Headline</a></li>
+                    <li><a href="listall">List Headlines</a></li>
                     <li><a href="#"><%= request.getAttribute("u") %></a></li>
 
                     <li><a href="logout">logout</a></li>
