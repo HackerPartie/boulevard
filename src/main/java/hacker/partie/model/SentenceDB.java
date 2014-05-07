@@ -113,7 +113,31 @@ public class SentenceDB {
 		Sentence random = new Sentence();
 
 		try {
-			// Anzahl der vorhandenen Datensätze ermitteln
+
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+            while (myResultSet.next()) {
+                randomObjekt = myResultSet.getString("object");
+                System.out.println(randomObjekt);
+            }
+
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.verb from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+            while (myResultSet.next()) {
+                randomVerb = myResultSet.getString("verb");
+                System.out.println(randomVerb);
+            }
+
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.complement from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+            while (myResultSet.next()) {
+                randomComplement = myResultSet.getString("complement");
+                System.out.println(randomComplement);
+            }
+
+            random = new Sentence(randomObjekt, randomVerb, randomComplement);
+
+			/*// Anzahl der vorhandenen Datensätze ermitteln
 			myPreparedStatement = connect
 					.prepareStatement("SELECT COUNT(*) AS count FROM sentences_svc");
 			myResultSet = myPreparedStatement.executeQuery();
@@ -156,7 +180,7 @@ public class SentenceDB {
 			}
 
 			// Random Sentence zusammenstellen
-			random = new Sentence(randomObjekt, randomVerb, randomComplement);
+			random = new Sentence(randomObjekt, randomVerb, randomComplement);*/
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -164,6 +188,10 @@ public class SentenceDB {
 		} finally {
 			closeConnections();
 		}
+        System.out.println(random.getSubject());
+        System.out.println(random.getVerb());
+        System.out.println(random.getComplement());
+        System.out.println(random.getClass());
 
 		return random;
 	}
