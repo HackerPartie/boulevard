@@ -17,7 +17,7 @@
 
 <style type="text/css">
 html,body {
-	background: #f06a1c;
+	background: #f3f3f3;
 }
 
 h1 {
