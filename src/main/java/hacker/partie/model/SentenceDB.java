@@ -97,12 +97,96 @@ public class SentenceDB {
 		}
 	}
 
-	/**
-	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
-	 * Tabellenfeldern der Tabelle "sentences_svc"
-	 * 
-	 * @return randomSentence
-	 */
+    /*
+     *     begin of jens attempt to get random sentences
+     *     with a missing dataset in database
+     *
+     */
+
+    public Sentence createSent() {
+
+        String object = get_object();
+        String verb = get_verb();
+        String complement = get_complement();
+        Sentence sent = new Sentence(object, verb, complement);
+
+        return sent;
+    }
+
+    private String get_object(){
+        String randomObject = null;
+        connect = DatabaseConnection.connectDB();
+
+        try {
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+            while (myResultSet.next()) {
+                randomObject = myResultSet.getString("object");
+                System.out.println(randomObject);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnections();
+        }
+        return randomObject;
+    }
+
+    private String get_verb(){
+        String randomVerb = null;
+        connect = DatabaseConnection.connectDB();
+
+        try {
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.verb from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+            while (myResultSet.next()) {
+                randomVerb = myResultSet.getString("verb");
+                System.out.println(randomVerb);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnections();
+        }
+
+        return randomVerb;
+    }
+
+    private String get_complement(){
+        String randomComplement = null;
+        connect = DatabaseConnection.connectDB();
+
+        try {
+            myPreparedStatement = connect.prepareStatement("select sentences_svc.complement from sentences_svc order by random() limit 1");
+            myResultSet = myPreparedStatement.executeQuery();
+
+            while (myResultSet.next()) {
+                randomComplement = myResultSet.getString("complement");
+                System.out.println(randomComplement);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnections();
+        }
+
+        return randomComplement;
+    }
+
+    /*
+     *
+     *   end of jens try
+     *
+     */
+
+
+    /**
+     * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
+     * Tabellenfeldern der Tabelle "sentences_svc"
+     *
+     * @return randomSentence
+     */
+
 	public static Sentence createRandom() {
 
 		connect = DatabaseConnection.connectDB();
@@ -113,6 +197,7 @@ public class SentenceDB {
 		Sentence random = new Sentence();
 
 		try {
+
 			// Anzahl der vorhandenen Datensätze ermitteln
 			myPreparedStatement = connect
 					.prepareStatement("SELECT COUNT(*) AS count FROM sentences_svc");
@@ -158,12 +243,17 @@ public class SentenceDB {
 			// Random Sentence zusammenstellen
 			random = new Sentence(randomObjekt, randomVerb, randomComplement);
 
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
 
 		} finally {
 			closeConnections();
 		}
+        System.out.println(random.getSubject());
+        System.out.println(random.getVerb());
+        System.out.println(random.getComplement());
+        System.out.println(random.getClass());
 
 		return random;
 	}
