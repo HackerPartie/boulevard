@@ -1,4 +1,4 @@
-package hacker.partie.user.model;
+package hacker.partie.model;
 
 /**
  * Created by jens on 4/6/14.

@@ -1,4 +1,4 @@
-package hacker.partie.user.dao;
+package hacker.partie.services;
 
 import hacker.partie.model.DatabaseConnection;
 import org.apache.shiro.authc.credential.DefaultPasswordService;
