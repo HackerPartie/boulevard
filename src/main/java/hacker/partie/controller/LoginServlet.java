@@ -36,8 +36,8 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		CrudUserDao crudUserDao = new CrudUserDao();
-		Boolean login = crudUserDao.doLogin(username, password);
-		if (login == true) {
+		
+		if (crudUserDao.doLogin(username, password) == true) {
 			session.setAttribute("user", username);
 			Cookie cookie = new Cookie(username, sessionId);
 			response.addCookie(cookie);
