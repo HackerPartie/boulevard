@@ -34,15 +34,14 @@ public class RegisterServlet extends HttpServlet {
         String encryptedPassword = passwordService.encryptPassword(password);
 
         CrudUserDao crudUserDao = new CrudUserDao();
-        boolean cu = crudUserDao.doRegister(username, encryptedPassword);
 
-        if (cu == true) {
+        if (crudUserDao.doRegister(username, encryptedPassword) == true) {
             //response.sendRedirect("login");
             request.setAttribute("message", "yepp, you did it!! Now login!!");
             RequestDispatcher dispatcher = request.getRequestDispatcher("sign_in.jsp");
             dispatcher.forward(request,response);
         } else {
-            request.setAttribute("error", "maybe this username is already in use a long time ago");
+            request.setAttribute("error", "maybe this username is already in use");
             RequestDispatcher dispatcher = request.getRequestDispatcher("sign_up.jsp");
             dispatcher.forward(request,response);
         }
