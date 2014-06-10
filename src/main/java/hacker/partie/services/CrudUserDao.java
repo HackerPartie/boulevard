@@ -1,6 +1,7 @@
-package hacker.partie.user.dao;
+package hacker.partie.services;
 
 import hacker.partie.model.DatabaseConnection;
+
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 
@@ -17,20 +18,20 @@ public class CrudUserDao {
     public boolean doLogin(String username, String password){
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String u = null;
-        String p = null;
+		String dbUsername = null;
+        String dbPassword = null;
         PasswordService passwordService = new DefaultPasswordService();
         Connection connection = DatabaseConnection.connectDB();
-        boolean l;
-
+        // be conservative: make this the default
+        boolean loginSuccess = false;
 
         try {
             preparedStatement = connection.prepareStatement("select * from user_auth where username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                u = resultSet.getString("username");
-                p = resultSet.getString("password");
+                dbUsername = resultSet.getString("username");
+                dbPassword = resultSet.getString("password");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,15 +43,13 @@ public class CrudUserDao {
             }
         }
 
-        if (passwordService.passwordsMatch(password, p)) {
+        if (passwordService.passwordsMatch(password, dbPassword)) {
             //session.setAttribute("user", u);
             //Cookie cookie = new Cookie(u, sessionId);
             //cookie.setHttpOnly(true);
-            l = true;
-        } else {
-            l = false;
-        }
-        return l;
+            loginSuccess = true;
+        } 
+        return loginSuccess;
     }
 
     public boolean doRegister(String username, String encryptedPassword) {
@@ -58,16 +57,16 @@ public class CrudUserDao {
         Connection connection = DatabaseConnection.connectDB();
         System.out.println(username);
         System.out.println(encryptedPassword);
-        boolean r;
+        boolean registerSuccess;
         try {
             preparedStatement = connection.prepareStatement("insert into user_auth(username, password) values(?,?)");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, encryptedPassword);
             preparedStatement.executeUpdate();
-            r = true;
+            registerSuccess = true;
         } catch (SQLException e) {
             e.printStackTrace();
-            r = false;
+            registerSuccess = false;
         } finally {
             try {
                 connection.close();
@@ -75,7 +74,7 @@ public class CrudUserDao {
                 e.printStackTrace();
             }
         }
-        return r;
+        return registerSuccess;
     }
 
 }

@@ -1,4 +1,4 @@
-package hacker.partie.user.filter;
+package hacker.partie.services;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

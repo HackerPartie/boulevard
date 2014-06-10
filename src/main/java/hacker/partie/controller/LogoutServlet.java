@@ -1,4 +1,4 @@
-package hacker.partie.user.servlet;
+package hacker.partie.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
