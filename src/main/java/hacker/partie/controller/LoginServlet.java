@@ -1,6 +1,6 @@
 package hacker.partie.controller;
 
-import hacker.partie.services.CrudUserDao;
+import hacker.partie.services.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
 		String sessionId = session.getId();
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		CrudUserDao crudUserDao = new CrudUserDao();
+		UserDao crudUserDao = new UserDao();
 		
 		if (crudUserDao.doLogin(username, password) == true) {
 			session.setAttribute("user", username);

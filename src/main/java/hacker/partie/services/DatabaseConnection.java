@@ -1,4 +1,4 @@
-package hacker.partie.model;
+package hacker.partie.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

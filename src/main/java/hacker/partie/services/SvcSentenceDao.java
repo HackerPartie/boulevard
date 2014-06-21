@@ -1,4 +1,6 @@
-package hacker.partie.model;
+package hacker.partie.services;
+
+import hacker.partie.model.SvcSentence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +18,7 @@ import java.util.List;
  * @author Bergsocke
  * 
  */
-public class SentenceDB {
+public class SvcSentenceDao {
 
 	private static Connection connect = null;
 	private static PreparedStatement myPreparedStatement = null;
@@ -32,11 +34,11 @@ public class SentenceDB {
 	 * 
 	 * @return sentenceList
 	 */
-	public static List<Sentence> findAll() {
+	public static List<SvcSentence> findAll() {
 
 		connect = DatabaseConnection.connectDB();
 
-		List<Sentence> sentenceList = new ArrayList<Sentence>();
+		List<SvcSentence> sentenceList = new ArrayList<SvcSentence>();
 
 		try {
 			// PreparedStatement für den SQL-Befehl
@@ -47,7 +49,7 @@ public class SentenceDB {
 			myResultSet = myPreparedStatement.executeQuery();
 
 			while (myResultSet.next()) {
-				sentenceList.add(new Sentence(myResultSet.getInt(1),
+				sentenceList.add(new SvcSentence(myResultSet.getInt(1),
 						myResultSet.getString(2), myResultSet.getString(3),
 						myResultSet.getString(4)));
 			}
@@ -56,7 +58,7 @@ public class SentenceDB {
 			System.out.println(ex.toString());
 
 		} finally {
-			SentenceDB.closeConnections();
+			SvcSentenceDao.closeConnections();
 		}
 
 		return sentenceList;
@@ -69,7 +71,7 @@ public class SentenceDB {
 	 * @param toSave
 	 * @return successful
 	 */
-	public static boolean save(Sentence toSave) {
+	public static boolean save(SvcSentence toSave) {
 
 		try {
 			connect = DatabaseConnection.connectDB();
@@ -103,12 +105,12 @@ public class SentenceDB {
      *
      */
 
-    public Sentence createSent() {
+    public SvcSentence createSent() {
 
         String object = get_object();
         String verb = get_verb();
         String complement = get_complement();
-        Sentence sent = new Sentence(object, verb, complement);
+        SvcSentence sent = new SvcSentence(object, verb, complement);
 
         return sent;
     }
@@ -187,14 +189,14 @@ public class SentenceDB {
      * @return randomSentence
      */
 
-	public static Sentence createRandom() {
+	public static SvcSentence createRandom() {
 
 		connect = DatabaseConnection.connectDB();
 		int numRows = 0;
 		String randomObjekt = null;
 		String randomVerb = null;
 		String randomComplement = null;
-		Sentence random = new Sentence();
+		SvcSentence random = new SvcSentence();
 
 		try {
 
@@ -241,7 +243,7 @@ public class SentenceDB {
 			}
 
 			// Random Sentence zusammenstellen
-			random = new Sentence(randomObjekt, randomVerb, randomComplement);
+			random = new SvcSentence(randomObjekt, randomVerb, randomComplement);
 
 
 		} catch (Exception e) {

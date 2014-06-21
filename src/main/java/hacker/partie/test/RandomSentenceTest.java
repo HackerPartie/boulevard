@@ -1,7 +1,7 @@
 package hacker.partie.test;
 
-import hacker.partie.model.Sentence;
-import hacker.partie.model.SentenceDB;
+import hacker.partie.model.SvcSentence;
+import hacker.partie.services.SvcSentenceDao;
 
 public class RandomSentenceTest {
 
@@ -9,7 +9,7 @@ public class RandomSentenceTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Sentence mySentence = SentenceDB.createRandom();
+		SvcSentence mySentence = SvcSentenceDao.createRandom();
 		System.out.println("\nZufallssatz:");
 		System.out.println(mySentence.getSubject() + " "
 				+ mySentence.getVerb() + " "

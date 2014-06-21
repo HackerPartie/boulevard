@@ -1,6 +1,6 @@
 package hacker.partie.controller;
 
-import hacker.partie.services.CrudUserDao;
+import hacker.partie.services.UserDao;
 
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         PasswordService passwordService = new DefaultPasswordService();
         String encryptedPassword = passwordService.encryptPassword(password);
 
-        CrudUserDao crudUserDao = new CrudUserDao();
+        UserDao crudUserDao = new UserDao();
 
         if (crudUserDao.doRegister(username, encryptedPassword) == true) {
             //response.sendRedirect("login");

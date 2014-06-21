@@ -1,8 +1,8 @@
 package hacker.partie.test;
 
-import hacker.partie.model.DatabaseConnection;
-import hacker.partie.model.Sentence;
-import hacker.partie.model.SentenceDB;
+import hacker.partie.model.SvcSentence;
+import hacker.partie.services.DatabaseConnection;
+import hacker.partie.services.SvcSentenceDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,19 +29,19 @@ public class TestSentence {
 		displayAllTest();
 
 		// Test-Sentences
-		Sentence sentenceTest1 = new Sentence("Piraten", "erobern",
+		SvcSentence sentenceTest1 = new SvcSentence("Piraten", "erobern",
 				"Luxus-Schiff");
-		Sentence sentenceTest2 = new Sentence("Fans", "stürmen", "Station");
+		SvcSentence sentenceTest2 = new SvcSentence("Fans", "stürmen", "Station");
 
 		// Sentences speichern
-		SentenceDB.save(sentenceTest1);
-		SentenceDB.save(sentenceTest2);
+		SvcSentenceDao.save(sentenceTest1);
+		SvcSentenceDao.save(sentenceTest2);
 
 		displayAllTest();
 
 		// Sentence löschen
-		SentenceDB.save(sentenceTest1);
-		SentenceDB.delete(2);
+		SvcSentenceDao.save(sentenceTest1);
+		SvcSentenceDao.delete(2);
 
 		displayAllTest();
 
@@ -70,7 +70,7 @@ public class TestSentence {
 			}
 
 			// Random Sentence erstellen
-			Sentence mySentence = SentenceDB.createRandom();
+			SvcSentence mySentence = SvcSentenceDao.createRandom();
 			System.out.println("\nZufallssatz:");
 			System.out.println(mySentence.getSubject() + " "
 					+ mySentence.getVerb() + " "
