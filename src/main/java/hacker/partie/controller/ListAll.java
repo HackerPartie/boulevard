@@ -1,7 +1,7 @@
 package hacker.partie.controller;
 
-import hacker.partie.model.Sentence;
-import hacker.partie.services.SentenceDao;
+import hacker.partie.model.SvcSentence;
+import hacker.partie.services.SvcSentenceDao;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +21,7 @@ public class ListAll extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Sentence> listAll = SentenceDao.findAll();
+		List<SvcSentence> listAll = SvcSentenceDao.findAll();
 		request.setAttribute("listAll", listAll);
 
 		RequestDispatcher dispatcher = request

@@ -4,11 +4,16 @@ package hacker.partie.model;
  * Die Klasse "Sentence" ist für die Erfassung und Rückgabe des Inhalts der
  * einzelnen Datensätze zuständig
  * 
+ * Diese klasse enthält Sätze die eine Subject / Verb / Complement Strukture haben
+ * zbs: Grossbrand zerstoert UNESCO-Weltkulturerbe 
+ * zbs: Mutter schmuggelt Drogen im Kinderwagen 
+ * 
+ * 
  * @author Bergsocke
  * 
  */
 
-public class Sentence {
+public class SvcSentence {
 	private int id;
 	private String subject;
 	private String verb;
@@ -18,7 +23,7 @@ public class Sentence {
 	 * Konstruktor für einen Random Sentence
 	 * 
 	 */
-	public Sentence() {
+	public SvcSentence() {
 
 	}
 
@@ -30,7 +35,7 @@ public class Sentence {
 	 * @param verb
 	 * @param complement
 	 */
-	public Sentence(int id, String subject, String verb, String complement) {
+	public SvcSentence(int id, String subject, String verb, String complement) {
 
 		this.id = id;
 		this.subject = subject;
@@ -45,7 +50,7 @@ public class Sentence {
 	 * @param verb
 	 * @param complement
 	 */
-	public Sentence(String subject, String verb, String complement) {
+	public SvcSentence(String subject, String verb, String complement) {
 
 		this.subject = subject;
 		this.verb = verb;
