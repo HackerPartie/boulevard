@@ -1,7 +1,5 @@
 package hacker.partie.services;
 
-import hacker.partie.model.DatabaseConnection;
-
 import org.apache.shiro.authc.credential.DefaultPasswordService;
 import org.apache.shiro.authc.credential.PasswordService;
 
@@ -13,7 +11,7 @@ import java.sql.SQLException;
 /**
  * Created by jens on 4/6/14.
  */
-public class CrudUserDao {
+public class UserDao {
 
     public boolean doLogin(String username, String password){
         PreparedStatement preparedStatement;

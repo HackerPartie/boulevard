@@ -1,7 +1,7 @@
 package hacker.partie.controller;
 
 import hacker.partie.model.Sentence;
-import hacker.partie.model.SentenceDB;
+import hacker.partie.services.SentenceDao;
 
 import java.io.IOException;
 
@@ -28,15 +28,14 @@ public class Add extends HttpServlet {
 	@Override	
 	protected void doPost (HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-		
+				
 		String subject = request.getParameter("subject");
 		String verb = request.getParameter("verb");
 		String complement = request.getParameter("complement");
 		
 		if (validateInput(subject, verb, complement) == true) {
 			Sentence sentence = new Sentence(subject, verb, complement);
-			SentenceDB.save(sentence);
+			SentenceDao.save(sentence);
 			response.sendRedirect("/listall");
 		}
 		else

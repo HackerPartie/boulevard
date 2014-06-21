@@ -1,4 +1,6 @@
-package hacker.partie.model;
+package hacker.partie.services;
+
+import hacker.partie.model.Sentence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +18,7 @@ import java.util.List;
  * @author Bergsocke
  * 
  */
-public class SentenceDB {
+public class SentenceDao {
 
 	private static Connection connect = null;
 	private static PreparedStatement myPreparedStatement = null;
@@ -56,7 +58,7 @@ public class SentenceDB {
 			System.out.println(ex.toString());
 
 		} finally {
-			SentenceDB.closeConnections();
+			SentenceDao.closeConnections();
 		}
 
 		return sentenceList;
