@@ -9,7 +9,10 @@ public class RandomSentenceTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		SvcSentence mySentence = SvcSentenceDao.createRandom();
+		 
+		
+		SvcSentence mySentence = SvcSentenceDao.createRandom();		
+		
 		System.out.println("\nZufallssatz:");
 		System.out.println(mySentence.getSubject() + " "
 				+ mySentence.getVerb() + " "

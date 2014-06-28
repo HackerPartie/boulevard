@@ -23,7 +23,7 @@ public class Random extends HttpServlet {
 
         SvcSentence sentence;
         SvcSentenceDao sent = new SvcSentenceDao();
-        sentence = sent.createSent();
+        sentence = sent.createRandom();
 
 		request.setAttribute("randomJunk", sentence);
 

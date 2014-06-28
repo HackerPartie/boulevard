@@ -99,23 +99,25 @@ public class SvcSentenceDao {
 		}
 	}
 
-    /*
-     *     begin of jens attempt to get random sentences
-     *     with a missing dataset in database
+    /**
+     * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
+     * Tabellenfeldern der Tabelle "sentences_svc"
+     * original von jens
      *
+     * @return randomSentence
      */
+	
+    public static SvcSentence createRandom() {
 
-    public SvcSentence createSent() {
-
-        String object = get_object();
+        String subject = get_subject();
         String verb = get_verb();
         String complement = get_complement();
-        SvcSentence sent = new SvcSentence(object, verb, complement);
+        SvcSentence sent = new SvcSentence(subject, verb, complement);
 
         return sent;
     }
 
-    private String get_object(){
+    private static String get_subject(){
         String randomObject = null;
         connect = DatabaseConnection.connectDB();
 
@@ -124,7 +126,6 @@ public class SvcSentenceDao {
             myResultSet = myPreparedStatement.executeQuery();
             while (myResultSet.next()) {
                 randomObject = myResultSet.getString("object");
-                System.out.println(randomObject);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,7 +135,7 @@ public class SvcSentenceDao {
         return randomObject;
     }
 
-    private String get_verb(){
+    private static String get_verb(){
         String randomVerb = null;
         connect = DatabaseConnection.connectDB();
 
@@ -143,7 +144,6 @@ public class SvcSentenceDao {
             myResultSet = myPreparedStatement.executeQuery();
             while (myResultSet.next()) {
                 randomVerb = myResultSet.getString("verb");
-                System.out.println(randomVerb);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,7 +154,7 @@ public class SvcSentenceDao {
         return randomVerb;
     }
 
-    private String get_complement(){
+    private static String get_complement(){
         String randomComplement = null;
         connect = DatabaseConnection.connectDB();
 
@@ -164,7 +164,6 @@ public class SvcSentenceDao {
 
             while (myResultSet.next()) {
                 randomComplement = myResultSet.getString("complement");
-                System.out.println(randomComplement);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -174,91 +173,6 @@ public class SvcSentenceDao {
 
         return randomComplement;
     }
-
-    /*
-     *
-     *   end of jens try
-     *
-     */
-
-
-    /**
-     * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
-     * Tabellenfeldern der Tabelle "sentences_svc"
-     *
-     * @return randomSentence
-     */
-
-	public static SvcSentence createRandom() {
-
-		connect = DatabaseConnection.connectDB();
-		int numRows = 0;
-		String randomObjekt = null;
-		String randomVerb = null;
-		String randomComplement = null;
-		SvcSentence random = new SvcSentence();
-
-		try {
-
-			// Anzahl der vorhandenen Datensätze ermitteln
-			myPreparedStatement = connect
-					.prepareStatement("SELECT COUNT(*) AS count FROM sentences_svc");
-			myResultSet = myPreparedStatement.executeQuery();
-			while (myResultSet.next()) {
-				numRows = myResultSet.getInt("count");
-			}
-
-			// Random-Zahl von 1 bis Anzahl der Datensätze
-			int randomObjektID = 1 + (int) (Math.random() * numRows);
-			int randomVerbID = 1 + (int) (Math.random() * numRows);
-			int randomComplementID = 1 + (int) (Math.random() * numRows);
-
-			// Ein Random-Objekt aus der Tabelle holen
-			myResultSet = findByID(randomObjektID);
-			if (myResultSet.next()) {
-				randomObjekt = myResultSet.getString(2);
-				// Wird ein Datensatz aus der Tabelle gelöscht, entsteht in der
-				// ID-Numerierung eine Lücke und liefert "null" zurück
-				if (randomObjekt == null) {
-					randomObjekt = "Maus";
-				}
-			}
-
-			// Ein Random-Verb aus der Tabelle holen
-			myResultSet = findByID(randomVerbID);
-			if (myResultSet.next()) {
-				randomVerb = myResultSet.getString(3);
-				if (randomVerb == null) {
-					randomVerb = "verletzt";
-				}
-			}
-
-			// Ein Random-Complement aus der Tabelle holen
-			myResultSet = findByID(randomComplementID);
-			if (myResultSet.next()) {
-				randomComplement = myResultSet.getString(4);
-				if (randomComplement == null) {
-					randomComplement = "Katze";
-				}
-			}
-
-			// Random Sentence zusammenstellen
-			random = new SvcSentence(randomObjekt, randomVerb, randomComplement);
-
-
-		} catch (Exception e) {
-			System.out.println(e.toString());
-
-		} finally {
-			closeConnections();
-		}
-        System.out.println(random.getSubject());
-        System.out.println(random.getVerb());
-        System.out.println(random.getComplement());
-        System.out.println(random.getClass());
-
-		return random;
-	}
 
 	/**
 	 * Ermittelt einen Datensatz aus der Tabelle "sentences_svc" anhand einer
