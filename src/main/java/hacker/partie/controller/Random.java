@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/")
+@WebServlet(urlPatterns={"/", "/random"})
 public class Random extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +28,7 @@ public class Random extends HttpServlet {
 		request.setAttribute("randomJunk", sentence);
 
 		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("index.jsp");
+				.getRequestDispatcher("random.jsp");
 		dispatcher.forward(request, response);
 
 	}
