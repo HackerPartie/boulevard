@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/random">Boulevard ist ur org</a>
+            <a class="navbar-brand" href="/">Boulevard ist ur org</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
