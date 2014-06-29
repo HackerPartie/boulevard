@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns={"/", "/random"})
+@WebServlet(urlPatterns={"/titelblatt"})
 public class Random extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -22,8 +22,7 @@ public class Random extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {		
 
         SvcSentence sentence;
-        SvcSentenceDao sent = new SvcSentenceDao();
-        sentence = sent.createRandom();
+        sentence = SvcSentenceDao.createRandom();
 
 		request.setAttribute("randomJunk", sentence);
 
