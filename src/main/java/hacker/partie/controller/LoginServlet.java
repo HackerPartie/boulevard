@@ -41,7 +41,8 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("user", username);
 			Cookie cookie = new Cookie(username, sessionId);
 			response.addCookie(cookie);
-			response.sendRedirect("/random");
+			// redirect to list of sentences servlet
+			response.sendRedirect("listall");
 		} else {
 			request.setAttribute("error", "username or password is wrong");
 			RequestDispatcher dispatcher = request

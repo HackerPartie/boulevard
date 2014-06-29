@@ -12,7 +12,7 @@
 	</properties>
 
 	<build>
-	 <finalName>${project.artifactId}</finalName>
+	 <finalName>ROOT</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>

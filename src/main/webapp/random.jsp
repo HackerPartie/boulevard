@@ -24,7 +24,7 @@
 	<!-- 	</p> -->
 
 	<p id="logo_pic" align="center">
-		<img src="papercutlogo.png" alt="Österreich isr-ur org" align="middle" />
+		<img src="papercutlogo.png" alt="Österreich ist-ur.org" align="middle" />
 
 		<%@include file="includes/navigation.jsp"%>
 	<div class="container">
