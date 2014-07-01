@@ -7,13 +7,6 @@
 	<packaging>war</packaging>
 	<name>boulevard_generator</name>
 
-	<!-- <distributionManagement> -->
-	<!-- <repository> -->
-	<!-- <id>ada</id> -->
-	<!-- <url>scpexe://ada.libera.cc/opt/tomcat/webapps</url> -->
-	<!-- </repository> -->
-	<!-- </distributionManagement> -->
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -21,7 +14,7 @@
 	<build>
 		<finalName>ROOT</finalName>
 		<extensions>
-			<!-- Enabling the use of FTP -->
+			<!-- Enabling the use of external ssh binary (aka /usr/bin/ssh) -->
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-ssh-external</artifactId>
