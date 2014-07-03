@@ -182,6 +182,7 @@ public class SvcSentenceDao {
 	 * @return myResultSet
 	 */
 	public static ResultSet findByID(int randomNumber) {
+		connect = DatabaseConnection.connectDB();
 		try {
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentences_svc WHERE id = "
@@ -203,6 +204,7 @@ public class SvcSentenceDao {
 	 * @return successful
 	 */
 	public static boolean delete(int id) {
+		connect = DatabaseConnection.connectDB();
 
 		try {
 

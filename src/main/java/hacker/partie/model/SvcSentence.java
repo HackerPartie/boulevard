@@ -60,11 +60,11 @@ public class SvcSentence {
 	/**
 	 * Definition der Getter und Setter
 	 */
-	public int getID() {
+	public int getId() {
 		return id;
 	}
 
-	public void setID(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
