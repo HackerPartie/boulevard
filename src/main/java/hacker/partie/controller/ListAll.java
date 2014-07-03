@@ -26,7 +26,15 @@ public class ListAll extends HttpServlet {
 
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("listall.jsp");
-		dispatcher.forward(request, response);
+		dispatcher.forward(request, response);				
 	}
-
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		int id = Integer.valueOf(req.getParameter("id"));		
+		SvcSentenceDao.delete(id);
+		
+		doGet(req, resp);			
+	}
 }
