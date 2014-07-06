@@ -25,12 +25,12 @@ public class Random extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 
-		// we test for  a boolean called hasAlreadyBeenLoaded in the session
+		// we look for a boolean called hasAlreadyBeenLoaded in the session
 		// if present it means we don't have to display the welcome message			
 		HttpSession session = request.getSession();
 			
 		if (session.getAttribute("hasAlreadyBeenLoaded") == null) {			
-			request.setAttribute("welcomeMessage", Messages.welcomeMessage);			 
+			request.setAttribute("welcomeMessage", Messages.WELCOME);			 
 			hasAlreadyBeenLoaded = true;
 			session.setAttribute("hasAlreadyBeenLoaded", hasAlreadyBeenLoaded);
 		}
