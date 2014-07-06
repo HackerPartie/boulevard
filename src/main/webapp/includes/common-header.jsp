@@ -12,8 +12,8 @@
 	rel='stylesheet' type='text/css'>
 <link href="resources/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css">
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>	
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 html,body {
