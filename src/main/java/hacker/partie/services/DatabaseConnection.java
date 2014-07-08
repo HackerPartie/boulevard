@@ -30,7 +30,7 @@ public class DatabaseConnection {
 			try {
 				// load a properties file from class path, inside static method
 				myProperties.load(DatabaseConnection.class.getClassLoader()
-						.getResourceAsStream("database.properties"));
+						.getResourceAsStream("application.properties"));
 
 			} catch (Exception e) {
 				System.out.println(e.toString());
