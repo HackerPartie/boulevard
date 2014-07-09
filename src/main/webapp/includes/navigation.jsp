@@ -69,7 +69,7 @@
 					</c:when>
 					<c:otherwise>
 						<li><a href="login">login</a></li>
-						<li><a href="register">register</a></li>
+						<!-- <li><a href="register">register</a></li> -->						
 					</c:otherwise>
 				</c:choose>
 			</ul>
