@@ -1,7 +1,7 @@
 package hacker.partie.controller;
 
 import hacker.partie.model.SvcSentence;
-import hacker.partie.services.SvcSentenceDao;
+import hacker.partie.services.SvcSentenceDaoImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +22,7 @@ public class Random extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {		
 
         SvcSentence sentence;
-        sentence = SvcSentenceDao.createRandom();
+        sentence = SvcSentenceDaoImpl.createRandom();
 
 		request.setAttribute("randomJunk", sentence);
 

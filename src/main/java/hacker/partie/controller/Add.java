@@ -1,7 +1,7 @@
 package hacker.partie.controller;
 
 import hacker.partie.model.SvcSentence;
-import hacker.partie.services.SvcSentenceDao;
+import hacker.partie.services.SvcSentenceDaoImpl;
 
 import java.io.IOException;
 
@@ -35,7 +35,7 @@ public class Add extends HttpServlet {
 		
 		if (validateInput(subject, verb, complement) == true) {
 			SvcSentence sentence = new SvcSentence(subject, verb, complement);
-			SvcSentenceDao.save(sentence);
+			SvcSentenceDaoImpl.save(sentence);
 			response.sendRedirect("/listall");
 		}
 		else

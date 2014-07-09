@@ -1,12 +1,22 @@
 package hacker.partie.model;
 
+import javax.persistence.*;
+
 /**
  * Created by jens on 4/6/14.
  */
+
+@Entity
+@Table(name = "user_auth")
 public class User {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
     private int id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
 
     public User(String username, String password) {

@@ -1,5 +1,7 @@
 package hacker.partie.model;
 
+import javax.persistence.*;
+
 /**
  * Die Klasse "Sentence" ist für die Erfassung und Rückgabe des Inhalts der
  * einzelnen Datensätze zuständig
@@ -13,10 +15,18 @@ package hacker.partie.model;
  * 
  */
 
+@Entity
+@Table(name = "sentences_svc")
 public class SvcSentence {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
 	private int id;
+    @Column(name = "subject")
 	private String subject;
+    @Column(name = "verb")
 	private String verb;
+    @Column(name = "complement")
 	private String complement;
 
 	/**
