@@ -1,5 +1,6 @@
-package hacker.partie.services;
+package hacker.partie.hibtry.service;
 
+import hacker.partie.hibtry.dao.SentenceDao;
 import hacker.partie.model.SvcSentence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class SvcSentenceServiceImpl implements SvcSentenceService {
+public class SentenceServiceImpl implements SentenceService {
 
     @Autowired
-    private SvcSentenceDao svcSentenceDao;
+    private SentenceDao sentenceDao;
 
     @Override
     public void saveSent(SvcSentence sentence) {
-        svcSentenceDao.saveSent(sentence);
+        sentenceDao.saveSent(sentence);
     }
 }

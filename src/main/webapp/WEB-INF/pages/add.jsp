@@ -9,7 +9,7 @@
 <body>
 <%@include file="includes/navigation.jsp"%>
 <h3> Einen Satz hinzufügen</h3>
-<form action="add" method="post" class="form-inline">
+<form action="/sentence/save" method="post" class="form-inline">
     <input type="text" class="form-control" name="subject" placeholder="Subjekt">
     <input type="text" class="form-control" name="verb" placeholder="Verb">
     <input type="text" class="form-control" name="complement" placeholder="Ergänzung">

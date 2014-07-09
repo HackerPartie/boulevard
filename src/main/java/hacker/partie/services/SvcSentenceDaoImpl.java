@@ -1,10 +1,6 @@
 package hacker.partie.services;
 
 import hacker.partie.model.SvcSentence;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,8 +19,7 @@ import java.util.List;
  * 
  */
 
-@Repository
-public class SvcSentenceDaoImpl implements SvcSentenceDao {
+public class SvcSentenceDaoImpl {
 
 	private static Connection connect = null;
 	private static PreparedStatement myPreparedStatement = null;
@@ -33,19 +28,6 @@ public class SvcSentenceDaoImpl implements SvcSentenceDao {
 	// eines Datensatzes erfolgreich war
 	public static int execute = 0;
 	public static boolean successful = false;
-
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    private Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Override
-    public void saveSent(SvcSentence sentence) {
-        getCurrentSession().save(sentence);
-    }
-
 
 	/**
 	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden
