@@ -13,22 +13,10 @@ public class LogoutServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		String user = (String) session.getAttribute("user");
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals(user)) {
-					cookie.setMaxAge(0);
-					cookie.setValue(null);
-					response.addCookie(cookie);
-				}
-			}
-		}
-		session.setAttribute("user", null);
+		HttpSession session = request.getSession();				
 		session.invalidate();
 
-		response.sendRedirect("titelblatt");
+		response.sendRedirect("/titelblatt");
 	}
 
 }

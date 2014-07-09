@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/add")
+@WebServlet("/private/add")
 public class Add extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -36,10 +36,10 @@ public class Add extends HttpServlet {
 		if (validateInput(subject, verb, complement) == true) {
 			SvcSentence sentence = new SvcSentence(subject, verb, complement);
 			SvcSentenceDao.save(sentence);
-			response.sendRedirect("/listall");
+			response.sendRedirect("/private/listall");
 		}
 		else
-			response.sendRedirect("/add");
+			response.sendRedirect("/private/add");
 	}
 	
 	private boolean validateInput(String subject, String verb, String complement) {						

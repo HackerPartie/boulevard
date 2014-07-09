@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@include file="includes/common-header.jsp"%>
+<%@include file="../includes/common-header.jsp"%>
 <title>Add an original sentence here</title>
 </head>
 <body>
-	<%@include file="includes/navigation.jsp"%>
+	<%@include file="../includes/navigation.jsp"%>
 	<h3> Einen Satz hinzufügen</h3>
 	<form action="add" method="post" class="form-inline">
 	<input type="text" class="form-control" name="subject" placeholder="Subjekt">

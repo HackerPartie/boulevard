@@ -31,20 +31,19 @@ public class LoginServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		session.invalidate();
-		session = request.getSession(true);
-		String sessionId = session.getId();
+		session = request.getSession(true);		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		UserDao crudUserDao = new UserDao();
 		
+		UserDao crudUserDao = new UserDao();		
 		if (crudUserDao.doLogin(username, password) == true) {
-			session.setAttribute("user", username);
-			Cookie cookie = new Cookie(username, sessionId);
-			response.addCookie(cookie);
+			session.setAttribute("sessionUser", username);
 			// redirect to list of sentences servlet
-			response.sendRedirect("listall");
+			response.sendRedirect("/private/listall");
+			
 		} else {
 			request.setAttribute("error", "username or password is wrong");
+			session.setAttribute("sessionUser", null);
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("sign_in.jsp");
 			dispatcher.forward(request, response);

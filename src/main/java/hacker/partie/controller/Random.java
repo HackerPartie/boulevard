@@ -41,7 +41,7 @@ public class Random extends HttpServlet {
 		RequestDispatcher dispatcher = request
 				.getRequestDispatcher("random.jsp");
 		dispatcher.forward(request, response);
-
+		
 	}
 
 }

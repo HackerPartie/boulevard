@@ -6,11 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@include file="includes/common-header.jsp"%>
+<%@include file="../includes/common-header.jsp"%>
 <title>List all sentences</title>
 </head>
 <body>
-	<%@include file="includes/navigation.jsp"%>
+	<%@include file="../includes/navigation.jsp"%>
 	<h3>Alle Sätze listen</h3>
 	<table class="table table-bordered">
 		<c:forEach items="${listAll}" var="sentence">
