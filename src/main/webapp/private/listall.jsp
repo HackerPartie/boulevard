@@ -14,7 +14,7 @@
 				<td><c:out value="${sentence.subject} ${sentence.verb} ${sentence.complement}" />
 				</td>
 				<td>
-					<form action="/listall" method="post">
+					<form action="/private/listall" method="post">
 						<input type="hidden" name="id" value="${sentence.id}"> <input type="submit" value="delete">
 					</form>
 				</td>

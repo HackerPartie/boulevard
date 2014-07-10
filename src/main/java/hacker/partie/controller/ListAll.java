@@ -35,6 +35,6 @@ public class ListAll extends HttpServlet {
 		int id = Integer.valueOf(req.getParameter("id"));		
 		SvcSentenceDao.delete(id);
 		
-		doGet(req, resp);			
+		resp.sendRedirect("/private/listall");			
 	}
 }
