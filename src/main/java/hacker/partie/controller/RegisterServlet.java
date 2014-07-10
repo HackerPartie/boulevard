@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-// @WebServlet("/register")
+@WebServlet("/5ad115c3be0d9007bca7d5ae53bf06a8")
 public class RegisterServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
