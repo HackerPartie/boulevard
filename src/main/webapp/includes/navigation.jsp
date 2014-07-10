@@ -10,8 +10,8 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/titelblatt">Meine zeitung ist ur
-				org</a>
+			<a href="/titelblatt" class="btn btn-success btn-lg">Titelblatt
+				Generieren</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
