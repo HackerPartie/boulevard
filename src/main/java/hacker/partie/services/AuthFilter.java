@@ -1,14 +1,20 @@
 package hacker.partie.services;
 
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/*"})
+
+@WebFilter(urlPatterns = {"/private/*"})
 public class AuthFilter implements Filter {
 
     @Override
@@ -17,27 +23,22 @@ public class AuthFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        HttpSession httpSession = httpServletRequest.getSession();
-        String user = null;
-
-        if (httpSession.getAttribute("user") != null) {
-            user = (String) httpSession.getAttribute("user");
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) 
+    		throws IOException, ServletException {
+        
+    	// by default a filter can work with any type of object, not only HTTP 
+    	// so we have to cast the parameters ito HttpServlet objects to use our well know HTTP stuff
+    	HttpServletRequest request = (HttpServletRequest) servletRequest;
+    	HttpServletResponse response = (HttpServletResponse) servletResponse;
+        
+    	HttpSession session = request.getSession();
+    	
+    	// if we don't have a valid user in the session, redirect to startpage via HTTP 302
+        if (session.getAttribute("sessionUser") == null) {
+        	response.sendRedirect(request.getContextPath() + "/titelblatt");
+        } else {
+        	filterChain.doFilter(request, response);
         }
-
-        String u = null;
-
-        Cookie[] cookies = httpServletRequest.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals(user)) {
-                    u = cookie.getName();
-                }
-            }
-        }
-        servletRequest.setAttribute("u", u);
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

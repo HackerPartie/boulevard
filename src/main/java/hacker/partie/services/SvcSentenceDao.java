@@ -58,7 +58,7 @@ public class SvcSentenceDao {
 			System.out.println(ex.toString());
 
 		} finally {
-			SvcSentenceDao.closeConnections();
+			closeConnections();
 		}
 
 		return sentenceList;
@@ -90,8 +90,8 @@ public class SvcSentenceDao {
 			successful = (execute != 0);
 			return successful;
 
-		} catch (Exception e) {
-			System.out.println(e.toString());
+		} catch (SQLException ex) {
+			System.out.println(ex.toString());
 			return successful = false;
 
 		} finally {
@@ -99,103 +99,82 @@ public class SvcSentenceDao {
 		}
 	}
 
-    /**
-     * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
-     * Tabellenfeldern der Tabelle "sentences_svc"
-     * original von jens
-     *
-     * @return randomSentence
-     */
-	
-    public static SvcSentence createRandom() {
-
-        String subject = get_subject();
-        String verb = get_verb();
-        String complement = get_complement();
-        SvcSentence sent = new SvcSentence(subject, verb, complement);
-
-        return sent;
-    }
-
-    private static String get_subject(){
-        String randomObject = null;
-        connect = DatabaseConnection.connectDB();
-
-        try {
-            myPreparedStatement = connect.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
-            myResultSet = myPreparedStatement.executeQuery();
-            while (myResultSet.next()) {
-                randomObject = myResultSet.getString("object");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnections();
-        }
-        return randomObject;
-    }
-
-    private static String get_verb(){
-        String randomVerb = null;
-        connect = DatabaseConnection.connectDB();
-
-        try {
-            myPreparedStatement = connect.prepareStatement("select sentences_svc.verb from sentences_svc order by random() limit 1");
-            myResultSet = myPreparedStatement.executeQuery();
-            while (myResultSet.next()) {
-                randomVerb = myResultSet.getString("verb");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnections();
-        }
-
-        return randomVerb;
-    }
-
-    private static String get_complement(){
-        String randomComplement = null;
-        connect = DatabaseConnection.connectDB();
-
-        try {
-            myPreparedStatement = connect.prepareStatement("select sentences_svc.complement from sentences_svc order by random() limit 1");
-            myResultSet = myPreparedStatement.executeQuery();
-
-            while (myResultSet.next()) {
-                randomComplement = myResultSet.getString("complement");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            closeConnections();
-        }
-
-        return randomComplement;
-    }
-
 	/**
-	 * Ermittelt einen Datensatz aus der Tabelle "sentences_svc" anhand einer
-	 * Zufallszahl
+	 * Methode zum Erstellen eines zufällig zusammengesetzten Sentence aus den
+	 * Tabellenfeldern der Tabelle "sentences_svc" original von jens
 	 * 
-	 * @param randomNumber
-	 * @return myResultSet
+	 * @return randomSentence
 	 */
-	public static ResultSet findByID(int randomNumber) {
+
+	public static SvcSentence createRandom() {
+
+		String subject = get_subject();
+		String verb = get_verb();
+		String complement = get_complement();
+		SvcSentence sent = new SvcSentence(subject, verb, complement);
+		return sent;
+	}
+
+	private static String get_subject() {
+		String randomObject = null;
 		connect = DatabaseConnection.connectDB();
+
 		try {
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM sentences_svc WHERE id = "
-							+ randomNumber + ";");
-
+					.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
 			myResultSet = myPreparedStatement.executeQuery();
+			while (myResultSet.next()) {
+				randomObject = myResultSet.getString("object");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnections();
+		}
+		return randomObject;
+	}
 
-		} catch (Exception e) {
-			System.out.println(e.toString());
+	private static String get_verb() {
+		String randomVerb = null;
+		connect = DatabaseConnection.connectDB();
+
+		try {
+			myPreparedStatement = connect
+					.prepareStatement("select sentences_svc.verb from sentences_svc order by random() limit 1");
+			myResultSet = myPreparedStatement.executeQuery();
+			while (myResultSet.next()) {
+				randomVerb = myResultSet.getString("verb");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnections();
 		}
 
-		return myResultSet;
+		return randomVerb;
 	}
+
+	private static String get_complement() {
+		String randomComplement = null;
+		connect = DatabaseConnection.connectDB();
+
+		try {
+			myPreparedStatement = connect
+					.prepareStatement("select sentences_svc.complement from sentences_svc order by random() limit 1");
+			myResultSet = myPreparedStatement.executeQuery();
+
+			while (myResultSet.next()) {
+				randomComplement = myResultSet.getString("complement");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnections();
+		}
+
+		return randomComplement;
+	}
+
 
 	/**
 	 * Methode zum Löschen eines Datensatzes aus der Tabelle "sentences_svc"
