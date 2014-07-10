@@ -5,7 +5,7 @@
 <title>Add an original sentence here</title>
 </head>
 <body>
-	<jsp:include page="../includes/navigation.jsp">
+	<jsp:include page="../includes/navigation.jsp" />
 	<h3> Einen Satz hinzufügen</h3>
 	<form action="add" method="post" class="form-inline">
 	<input type="text" class="form-control" name="subject" placeholder="Subjekt">
