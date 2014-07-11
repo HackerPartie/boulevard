@@ -24,6 +24,15 @@ p#logo_text {
 	text-align: center;
 }
 
+.html,body {
+	background: #f3f3f3;
+}
+
+.html.body,h1 {
+	font-size: 75px !important;
+	font-family: 'Bree Serif', serif;
+}
+
 /* =====================================================================
 	ENDE DES STYLESHEETS
    ===================================================================== */
