@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		if (crudUserDao.doLogin(username, password) == true) {
 			session.setAttribute("sessionUser", username);
 			// redirect to list of sentences servlet
-			response.sendRedirect("/private/listall");
+			response.sendRedirect("private/listall");
 			
 		} else {
 			request.setAttribute("error", "username or password is wrong");
