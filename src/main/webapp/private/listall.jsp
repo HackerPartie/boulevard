@@ -16,7 +16,7 @@
                 <td>${sentence.verb}</td>
                 <td>${sentence.complement}</td>
                 <td>
-                    <form action="/private/listall" method="post">
+                    <form action="${pageContext.request.contextPath}/private/listall" method="post">
                         <input type="hidden" name="id" value="${sentence.id}"> <input type="submit" value="delete">
                     </form>
                 </td>
@@ -24,7 +24,7 @@
         </c:forEach>
     </table>
     <h3>Einen Satz hinzufügen</h3>
-    <form action="add" method="post">
+    <form action="${pageContext.request.contextPath}/private/add" method="post">
         <input type="text" name="subject" placeholder="Subjekt"> <input type="text" name="verb" placeholder="Verb">
         <input type="text" name="complement" placeholder="Ergänzung">
         <button type="submit" class="btn btn-default">Zur Sätzenliste hinzufügen</button>

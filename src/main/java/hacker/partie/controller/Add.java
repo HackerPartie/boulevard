@@ -36,12 +36,9 @@ public class Add extends HttpServlet {
 		if (validateInput(subject, verb, complement) == true) {
 			SvcSentence sentence = new SvcSentence(subject, verb, complement);
 			SvcSentenceDao.save(sentence);
-			response.sendRedirect("/private/listall");
 		}
-		else
-			response.sendRedirect("/private/add");
-	}
-	
+			response.sendRedirect("listall");
+	}	
 	private boolean validateInput(String subject, String verb, String complement) {						
 		
 		if (subject.trim().length() == 0 || verb.trim().length() == 0 || complement.trim().length() == 0) 

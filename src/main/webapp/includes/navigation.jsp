@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<c:set var="context" value="${pageContext.request.contextPath}"/>  
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -10,7 +10,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a href="/titelblatt" class="btn btn-success btn-lg">Titelblatt
+			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt
 				Generieren</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -19,12 +19,12 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${not empty sessionScope.sessionUser}">
-						<li><a href="/private/listall">Edit SVC headlines</a></li>
+						<li><a href="${context}/private/listall">Edit SVC headlines</a></li>
 						<li><a href="#">logged in as ${sessionScope.sessionUser}</a></li>
-						<li><a href="/logout">Logout</a>
+						<li><a href="${context}/logout">Logout</a>
 					</c:when>
 					<c:otherwise>
-						<li><a href="login">login</a></li>
+						<li><a href="${context}/login">login</a></li>
 						<!-- <li><a href="register">register</a></li> -->
 					</c:otherwise>
 				</c:choose>
