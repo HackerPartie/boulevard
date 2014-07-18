@@ -116,7 +116,7 @@ public class SvcSentenceDao {
 	}
 
 	private static String get_subject() {
-		String randomObject = null;
+		String randomSubject = null;
 		connect = DatabaseConnection.connectDB();
 
 		try {
@@ -124,14 +124,15 @@ public class SvcSentenceDao {
 					.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
 			myResultSet = myPreparedStatement.executeQuery();
 			while (myResultSet.next()) {
-				randomObject = myResultSet.getString("object");
+				randomSubject = myResultSet.getString("object");
 			}
 		} catch (SQLException e) {
+			randomSubject = "Titelblatt generator";
 			e.printStackTrace();
 		} finally {
 			closeConnections();
 		}
-		return randomObject;
+		return randomSubject;
 	}
 
 	private static String get_verb() {
@@ -146,6 +147,7 @@ public class SvcSentenceDao {
 				randomVerb = myResultSet.getString("verb");
 			}
 		} catch (SQLException e) {
+			randomVerb = "hat gerade";
 			e.printStackTrace();
 		} finally {
 			closeConnections();
@@ -167,6 +169,7 @@ public class SvcSentenceDao {
 				randomComplement = myResultSet.getString("complement");
 			}
 		} catch (SQLException e) {
+			randomComplement = "Problemen mit seiner Datenbank";
 			e.printStackTrace();
 		} finally {
 			closeConnections();
