@@ -24,8 +24,12 @@ p#logo_text {
 	text-align: center;
 }
 
+/*
+The fixed navbar will overlay our other content, unless we add padding to the bottom of the <body>. 
+*/
 .html,body {
 	background: #f3f3f3;
+	padding-bottom: 70px;
 }
 
 .html.body,h1 {
