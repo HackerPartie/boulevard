@@ -22,8 +22,6 @@ public class SvcSentenceDao {
 
 	// Variablen, die anzeigen sollen, ob das Speichern, Updaten oder Löschen
 	// eines Datensatzes erfolgreich war
-	public static int execute = 0;
-	public static boolean successful = false;
 
 	/**
 	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden
@@ -88,14 +86,12 @@ public class SvcSentenceDao {
 			myPreparedStatement.setString(3, toSave.getComplement());
 
 			// SQL-Befehl wird ausgeführt
-			execute = myPreparedStatement.executeUpdate();
-
-			successful = (execute != 0);
-			return successful;
+			int execute = myPreparedStatement.executeUpdate();
+			return (execute != 0);
 
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
-			return successful = false;
+			return  false;
 
 		} finally {
 			closeConnections(myResultSet, myPreparedStatement, connect);
@@ -213,15 +209,13 @@ public class SvcSentenceDao {
 					.prepareStatement("DELETE FROM sentences_svc WHERE id = "
 							+ id + ";");
 
-			execute = myPreparedStatement.executeUpdate();
-
-			successful = (execute != 0);
-			return successful;
+			int execute = myPreparedStatement.executeUpdate();
+			return (execute != 0);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 
-			return successful = false;
+			return  false;
 
 		} finally {
 			closeConnections(myResultSet, myPreparedStatement, connect);
