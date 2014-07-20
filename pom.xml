@@ -34,6 +34,7 @@
 					<httpConnector>
 						<port>8081</port>
 					</httpConnector>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -59,7 +60,7 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<!--  heavily based on http://blog.darrenscott.com/2010/08/05/uploading-files-using-scp-and-the-maven-wagon-plugin/ -->
+				<!-- heavily based on http://blog.darrenscott.com/2010/08/05/uploading-files-using-scp-and-the-maven-wagon-plugin/ -->
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>wagon-maven-plugin</artifactId>
 				<version>1.0-beta-5</version>
