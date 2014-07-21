@@ -20,13 +20,8 @@ import java.util.List;
  */
 public class SvcSentenceDao {
 
-	private static Connection connect = null;
-	private static PreparedStatement myPreparedStatement = null;
-	private static ResultSet myResultSet = null;
 	// Variablen, die anzeigen sollen, ob das Speichern, Updaten oder Löschen
 	// eines Datensatzes erfolgreich war
-	public static int execute = 0;
-	public static boolean successful = false;
 
 	/**
 	 * Es werden alle Datensätze, die in der Tabelle "sentences_svc" vorhanden
@@ -36,12 +31,15 @@ public class SvcSentenceDao {
 	 */
 	public static List<SvcSentence> findAll() {
 
-		connect = DatabaseConnection.connectDB();
+		Connection connect = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		List<SvcSentence> sentenceList = new ArrayList<SvcSentence>();
 
 		try {
 			// PreparedStatement für den SQL-Befehl
+			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
 					.prepareStatement("SELECT * FROM sentences_svc;");
 
@@ -58,7 +56,7 @@ public class SvcSentenceDao {
 			System.out.println(ex.toString());
 
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 
 		return sentenceList;
@@ -72,6 +70,9 @@ public class SvcSentenceDao {
 	 * @return successful
 	 */
 	public static boolean save(SvcSentence toSave) {
+		Connection connect = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		try {
 			connect = DatabaseConnection.connectDB();
@@ -85,17 +86,15 @@ public class SvcSentenceDao {
 			myPreparedStatement.setString(3, toSave.getComplement());
 
 			// SQL-Befehl wird ausgeführt
-			execute = myPreparedStatement.executeUpdate();
-
-			successful = (execute != 0);
-			return successful;
+			int execute = myPreparedStatement.executeUpdate();
+			return (execute != 0);
 
 		} catch (SQLException ex) {
 			System.out.println(ex.toString());
-			return successful = false;
+			return  false;
 
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 	}
 
@@ -116,29 +115,38 @@ public class SvcSentenceDao {
 	}
 
 	private static String get_subject() {
-		String randomObject = null;
-		connect = DatabaseConnection.connectDB();
+		String randomSubject = null;
+		Connection connect = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		try {
+			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
 					.prepareStatement("select sentences_svc.object from sentences_svc order by random() limit 1");
 			myResultSet = myPreparedStatement.executeQuery();
 			while (myResultSet.next()) {
-				randomObject = myResultSet.getString("object");
+				randomSubject = myResultSet.getString("object");
 			}
 		} catch (SQLException e) {
+			randomSubject = "Titelblatt generator";
 			e.printStackTrace();
+			System.err.println("boulevard_db error");
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
-		return randomObject;
+		return randomSubject;
 	}
 
 	private static String get_verb() {
 		String randomVerb = null;
-		connect = DatabaseConnection.connectDB();
+		
+		Connection connect = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		try {
+			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
 					.prepareStatement("select sentences_svc.verb from sentences_svc order by random() limit 1");
 			myResultSet = myPreparedStatement.executeQuery();
@@ -146,9 +154,11 @@ public class SvcSentenceDao {
 				randomVerb = myResultSet.getString("verb");
 			}
 		} catch (SQLException e) {
+			randomVerb = "hat gerade";
 			e.printStackTrace();
+			System.err.println("boulevard_db error");
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 
 		return randomVerb;
@@ -156,9 +166,12 @@ public class SvcSentenceDao {
 
 	private static String get_complement() {
 		String randomComplement = null;
-		connect = DatabaseConnection.connectDB();
+		Connection connect  = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		try {
+			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
 					.prepareStatement("select sentences_svc.complement from sentences_svc order by random() limit 1");
 			myResultSet = myPreparedStatement.executeQuery();
@@ -167,9 +180,11 @@ public class SvcSentenceDao {
 				randomComplement = myResultSet.getString("complement");
 			}
 		} catch (SQLException e) {
+			randomComplement = "Problemen mit seiner Datenbank";
+			System.err.println("boulevard_db error");
 			e.printStackTrace();
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 
 		return randomComplement;
@@ -183,33 +198,34 @@ public class SvcSentenceDao {
 	 * @return successful
 	 */
 	public static boolean delete(int id) {
-		connect = DatabaseConnection.connectDB();
+		
+		Connection connect = null;
+		PreparedStatement myPreparedStatement = null;
+		ResultSet myResultSet = null;
 
 		try {
-
+			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
 					.prepareStatement("DELETE FROM sentences_svc WHERE id = "
 							+ id + ";");
 
-			execute = myPreparedStatement.executeUpdate();
-
-			successful = (execute != 0);
-			return successful;
+			int execute = myPreparedStatement.executeUpdate();
+			return (execute != 0);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 
-			return successful = false;
+			return  false;
 
 		} finally {
-			closeConnections();
+			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 	}
 
 	/**
 	 * Methode zum Schließen aller offenen Verbindungen
 	 */
-	private static void closeConnections() {
+	private static void closeConnections(ResultSet myResultSet, PreparedStatement myPreparedStatement, Connection connect) {
 		try {
 
 			if (myResultSet != null) {
