@@ -6,24 +6,24 @@ DROP TABLE IF EXISTS sentences_nnp;
 CREATE TABLE sentences_svc(
 id serial primary key, object VARCHAR(100), verb VARCHAR(100), complement VARCHAR(100));
 
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (1, 'Alko-Papa', 'zwang', 'Sohn zum Autofahren');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (2, 'Mann', 'entreisst', 'Polizist Pistole und schiesst');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (3, 'Grossbrand', 'zerstoert', 'UNESCO-Weltkulturerbe');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (5, 'Beyonce', 'versext', 'die Grammys');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (7, 'Mama', 'rettete', 'Sohn vor dem Ertrinken');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (8, 'Cobra', 'verhaftet', 'Kiew-Milliardär');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (15, 'Team Stronach', 'fordert', 'Waffen für alle');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (16, 'Mutter', 'schmuggelt', 'Drogen im Kinderwagen');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (17, 'Fauler Postbot', 'warf', '1.038 Briefe in den Müll');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (19, 'Achtjähriger', 'stürtz', '12 Meter in die Tiefe');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (23, 'Gefängnis Direktorin', 'führ', 'mit zwei Mördern zu Hochzeit');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (24, 'Umstrittenes Nobel-Bordell', 'wirbt im City', 'mit Sex-Bus');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (25, 'Hillary Clinton', ' kassiert', '2.777 Dollar pro Redeminute');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (26, '"Echter Wiener"', 'überfiel', 'City-Bank zu Mittag');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (27, 'Bergsteiger ', 'rammt sich', 'Eispickel in die Wants ');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (28, 'Netrebko', 'plant', 'Fest in Salzburg');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (29, 'Blitz ', 'trifft', 'Frau bei Rasenmähen');
-INSERT INTO sentences_svc (id, object, verb, complement) VALUES (30, 'Biker', 'stürtzt', 'über Club-Stiege - tot');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Alko-Papa', 'zwang', 'Sohn zum Autofahren');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Mann', 'entreisst', 'Polizist Pistole und schiesst');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Grossbrand', 'zerstoert', 'UNESCO-Weltkulturerbe');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Beyonce', 'versext', 'die Grammys');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Mama', 'rettete', 'Sohn vor dem Ertrinken');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Cobra', 'verhaftet', 'Kiew-Milliardär');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Team Stronach', 'fordert', 'Waffen für alle');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Mutter', 'schmuggelt', 'Drogen im Kinderwagen');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Fauler Postbot', 'warf', '1.038 Briefe in den Müll');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Achtjähriger', 'stürtz', '12 Meter in die Tiefe');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Gefängnis Direktorin', 'führ', 'mit zwei Mördern zu Hochzeit');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Umstrittenes Nobel-Bordell', 'wirbt im City', 'mit Sex-Bus');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Hillary Clinton', ' kassiert', '2.777 Dollar pro Redeminute');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, '"Echter Wiener"', 'überfiel', 'City-Bank zu Mittag');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Bergsteiger ', 'rammt sich', 'Eispickel in die Wange ');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Netrebko', 'plant', 'Fest in Salzburg');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Blitz ', 'trifft', 'Frau bei Rasenmähen');
+INSERT INTO sentences_svc (id, object, verb, complement) VALUES (default, 'Biker', 'stürtzt', 'über Club-Stiege - tot');
 
 -- create a table containing our user and hashed password
 CREATE TABLE user_auth(

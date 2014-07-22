@@ -16,7 +16,6 @@ public class UserDao {
     public boolean doLogin(String username, String password){
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-		String dbUsername = null;
         String dbPassword = null;
         PasswordService passwordService = new DefaultPasswordService();
         Connection connection = DatabaseConnection.connectDB();
@@ -28,7 +27,6 @@ public class UserDao {
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                dbUsername = resultSet.getString("username");
                 dbPassword = resultSet.getString("password");
             }
         } catch (SQLException e) {
@@ -42,9 +40,6 @@ public class UserDao {
         }
 
         if (passwordService.passwordsMatch(password, dbPassword)) {
-            //session.setAttribute("user", u);
-            //Cookie cookie = new Cookie(u, sessionId);
-            //cookie.setHttpOnly(true);
             loginSuccess = true;
         } 
         return loginSuccess;

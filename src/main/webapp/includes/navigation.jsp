@@ -19,7 +19,8 @@
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${not empty sessionScope.sessionUser}">
-						<li><a href="${context}/private/listall">Edit SVC headlines</a></li>
+						<li><a href="${context}/private/svcadmin">Edit SVC headlines</a></li>
+                        <li><a href="${context}/private/nnpadmin">Edit NNP headlines</a></li>
 						<li><a href="#">logged in as ${sessionScope.sessionUser}</a></li>
 						<li><a href="${context}/logout">Logout</a>
 					</c:when>

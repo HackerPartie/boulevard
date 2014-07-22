@@ -1,6 +1,6 @@
 package hacker.partie.services;
 
-import hacker.partie.model.SvcSentence;
+import hacker.partie.model.ThreePartSentence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Die Klasse "SentenceDB" stellte eine Verbindung bietet die Methoden zum
+ * Die Klasse "SvcSentenceDao" stellte eine Verbindung bietet die Methoden zum
  * Anzeigen und Speichern von Datensätzen aus der Tabelle "sentences_svc".
  * Weiters bietet sie die Möglichkeit zur Erstellung eines zufällig
  * zusammengestellten Sentence.
@@ -29,13 +29,13 @@ public class SvcSentenceDao {
 	 * 
 	 * @return sentenceList
 	 */
-	public static List<SvcSentence> findAll() {
+	public static List<ThreePartSentence> findAll() {
 
 		Connection connect = null;
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
 
-		List<SvcSentence> sentenceList = new ArrayList<SvcSentence>();
+		List<ThreePartSentence> sentenceList = new ArrayList<ThreePartSentence>();
 
 		try {
 			// PreparedStatement für den SQL-Befehl
@@ -47,7 +47,7 @@ public class SvcSentenceDao {
 			myResultSet = myPreparedStatement.executeQuery();
 
 			while (myResultSet.next()) {
-				sentenceList.add(new SvcSentence(myResultSet.getInt(1),
+				sentenceList.add(new ThreePartSentence(myResultSet.getInt(1),
 						myResultSet.getString(2), myResultSet.getString(3),
 						myResultSet.getString(4)));
 			}
@@ -69,7 +69,7 @@ public class SvcSentenceDao {
 	 * @param toSave
 	 * @return successful
 	 */
-	public static boolean save(SvcSentence toSave) {
+	public static boolean save(ThreePartSentence toSave) {
 		Connection connect = null;
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
@@ -105,12 +105,12 @@ public class SvcSentenceDao {
 	 * @return randomSentence
 	 */
 
-	public static SvcSentence createRandom() {
+	public static ThreePartSentence createRandom() {
 
 		String subject = get_subject();
 		String verb = get_verb();
 		String complement = get_complement();
-		SvcSentence sent = new SvcSentence(subject, verb, complement);
+		ThreePartSentence sent = new ThreePartSentence(subject, verb, complement);
 		return sent;
 	}
 
@@ -221,6 +221,31 @@ public class SvcSentenceDao {
 			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
 	}
+	
+    public static int count() {
+        Connection connect = null;
+        PreparedStatement myPreparedStatement = null;
+        ResultSet myResultSet = null;
+        
+
+        try {
+            connect = DatabaseConnection.connectDB();
+            myPreparedStatement = connect
+                .prepareStatement("SELECT COUNT(*) FROM sentences_svc;");
+            myResultSet = myPreparedStatement.executeQuery();
+            myResultSet.next();
+            return myResultSet.getInt("count");
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+
+            return -1;
+
+        } finally {
+            closeConnections(myResultSet, myPreparedStatement, connect);
+        }
+
+    }
 
 	/**
 	 * Methode zum Schließen aller offenen Verbindungen
