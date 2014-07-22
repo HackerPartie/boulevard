@@ -1,12 +1,13 @@
 package hacker.partie.controller;
 
 import hacker.partie.model.Messages;
-import hacker.partie.model.SvcSentence;
-import hacker.partie.services.SvcSentenceDao;
+import hacker.partie.model.ThreePartSentence;
+import hacker.partie.services.TitelblattFactory;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +36,18 @@ public class Random extends HttpServlet {
 			session.setAttribute("hasAlreadyBeenLoaded", hasAlreadyBeenLoaded);
 		}
 		
-		SvcSentence sentence = SvcSentenceDao.createRandom();
+		
+		// save the row counts in the application context
+		ServletContext servletContext = getServletContext();
+		
+		TitelblattFactory factory = (TitelblattFactory) servletContext.getAttribute("factory");
+		
+		if (factory == null) {
+		    factory = TitelblattFactory.getInstance();
+		    servletContext.setAttribute("factory", factory);
+		}
+		
+		ThreePartSentence sentence = factory.getSentence();
 		request.setAttribute("randomJunk", sentence);
 
 		RequestDispatcher dispatcher = request

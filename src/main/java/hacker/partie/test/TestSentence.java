@@ -1,6 +1,6 @@
 package hacker.partie.test;
 
-import hacker.partie.model.SvcSentence;
+import hacker.partie.model.ThreePartSentence;
 import hacker.partie.services.DatabaseConnection;
 import hacker.partie.services.SvcSentenceDao;
 
@@ -29,9 +29,9 @@ public class TestSentence {
 		displayAllTest();
 
 		// Test-Sentences
-		SvcSentence sentenceTest1 = new SvcSentence("Piraten", "erobern",
+		ThreePartSentence sentenceTest1 = new ThreePartSentence("Piraten", "erobern",
 				"Luxus-Schiff");
-		SvcSentence sentenceTest2 = new SvcSentence("Fans", "stürmen", "Station");
+		ThreePartSentence sentenceTest2 = new ThreePartSentence("Fans", "stürmen", "Station");
 
 		// Sentences speichern
 		SvcSentenceDao.save(sentenceTest1);
@@ -70,7 +70,7 @@ public class TestSentence {
 			}
 
 			// Random Sentence erstellen
-			SvcSentence mySentence = SvcSentenceDao.createRandom();
+			ThreePartSentence mySentence = SvcSentenceDao.createRandom();
 			System.out.println("\nZufallssatz:");
 			System.out.println(mySentence.getSubject() + " "
 					+ mySentence.getVerb() + " "
