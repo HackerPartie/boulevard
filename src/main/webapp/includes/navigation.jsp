@@ -12,6 +12,8 @@
 			</button>
 			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt
 				Generieren</a>
+                <label for="submit-form"><span class="btn btn-info btn-lg">Zum Top 10 hinzüfugen</span></label>
+            <a href="${context}/vote" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"

@@ -21,7 +21,8 @@ public class NnpAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		List<ThreePartSentence> listAll = NnpSentenceDao.findAll();
+	    NnpSentenceDao nnpSentenceDao = new NnpSentenceDao();
+		List<ThreePartSentence> listAll = nnpSentenceDao.findAll();
 		request.setAttribute("listAll", listAll);
 
 		RequestDispatcher dispatcher = request
@@ -39,7 +40,8 @@ public class NnpAdmin extends HttpServlet {
 	        
 	        if (validateInput(subject, verb, complement) == true) {
 	            ThreePartSentence sentence = new ThreePartSentence(subject, verb, complement);
-	            NnpSentenceDao.save(sentence);
+	            NnpSentenceDao nnpSentenceDao = new NnpSentenceDao();
+	            nnpSentenceDao.save(sentence);
 	            resetFactory();
 	            
 	        }
@@ -56,8 +58,9 @@ public class NnpAdmin extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int id = Integer.valueOf(req.getParameter("id"));		
-		NnpSentenceDao.delete(id);
+		int id = Integer.valueOf(req.getParameter("id"));
+		NnpSentenceDao nnpSentenceDao = new NnpSentenceDao();
+		nnpSentenceDao.delete(id);
 		resetFactory();
 		
 		// no need for redirect here, we issued an ajax call
