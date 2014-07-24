@@ -44,7 +44,7 @@
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
-             Danke für deinen Enthusiasmus ! Du kannst Morgen wieder wählen.
+             Danke für deinen Enthusiasmus ! Du kannst Morgen deine Stimme wieder geben.
         </div>
     </c:if>
 </body>
