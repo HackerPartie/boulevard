@@ -10,8 +10,11 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt
-				Generieren</a>
+			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt Generieren</a>
+                <c:if test="${not empty randomJunk}">
+                <label for="submit-form"><span class="btn btn-info btn-lg">Zum Top 10 hinzüfugen</span></label>
+                </c:if>
+            <a href="${context}/vote" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"

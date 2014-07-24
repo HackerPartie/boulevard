@@ -1,7 +1,7 @@
 package hacker.partie.test;
 
 import hacker.partie.model.ThreePartSentence;
-import hacker.partie.services.SvcSentenceDao;
+import hacker.partie.services.NnpSentenceDao;
 
 public class RandomSentenceTest {
 
@@ -10,8 +10,8 @@ public class RandomSentenceTest {
 	 */
 	public static void main(String[] args) {
 		 
-		
-		ThreePartSentence mySentence = SvcSentenceDao.createRandom();		
+	    NnpSentenceDao nnpSentenceDao = new NnpSentenceDao();	
+	    ThreePartSentence mySentence = nnpSentenceDao.createRandom();
 		
 		System.out.println("\nZufallssatz:");
 		System.out.println(mySentence.getSubject() + " "

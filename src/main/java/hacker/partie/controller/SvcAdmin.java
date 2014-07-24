@@ -21,7 +21,9 @@ public class SvcAdmin extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		List<ThreePartSentence> listAll = SvcSentenceDao.findAll();
+	    SvcSentenceDao svcSentenceDao = new SvcSentenceDao();
+		List<ThreePartSentence> listAll = svcSentenceDao.findAll();
+		
 		request.setAttribute("listAll", listAll);
 
 		RequestDispatcher dispatcher = request
@@ -39,7 +41,8 @@ public class SvcAdmin extends HttpServlet {
 	        
 	        if (validateInput(subject, verb, complement) == true) {
 	            ThreePartSentence sentence = new ThreePartSentence(subject, verb, complement);
-	            SvcSentenceDao.save(sentence);
+	            SvcSentenceDao svcSentenceDao = new SvcSentenceDao();
+	            svcSentenceDao.save(sentence);
 	            resetFactory();
 	        }
 	            response.sendRedirect("svcadmin");
@@ -55,8 +58,9 @@ public class SvcAdmin extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int id = Integer.valueOf(req.getParameter("id"));		
-		SvcSentenceDao.delete(id);
+		int id = Integer.valueOf(req.getParameter("id"));
+		SvcSentenceDao svcSentenceDao = new SvcSentenceDao();
+		svcSentenceDao.delete(id);
 		resetFactory();
 		
 		// no need for redirect here, we issued an ajax call

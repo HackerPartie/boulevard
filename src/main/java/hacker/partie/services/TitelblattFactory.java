@@ -6,23 +6,28 @@ public class TitelblattFactory {
     
     double nnpCount;
     double svcCount;
+    SvcSentenceDao svcSentenceDao;
+    NnpSentenceDao nnpSentenceDao;
     
-    public TitelblattFactory(double nnpCount, double svcCount) {
+    public TitelblattFactory(SvcSentenceDao svcSentenceDao, NnpSentenceDao nnpSentenceDao, double nnpCount, double svcCount ) {
+        this.svcSentenceDao = svcSentenceDao;
+        this.nnpSentenceDao = nnpSentenceDao;
         this.nnpCount = nnpCount;
         this.svcCount = svcCount;
     }
-    
+
     public static TitelblattFactory getInstance() {
-        double nnpCount = NnpSentenceDao.count();
-        double svcCount = SvcSentenceDao.count();
-        TitelblattFactory instance = new TitelblattFactory(nnpCount, svcCount);
+        SvcSentenceDao svcSentenceDao = new SvcSentenceDao(); 
+        NnpSentenceDao nnpSentenceDao = new NnpSentenceDao();
+        double nnpCount = nnpSentenceDao.count();
+        double svcCount = svcSentenceDao.count();
+        TitelblattFactory instance = new TitelblattFactory(svcSentenceDao, nnpSentenceDao, nnpCount, svcCount);
         return instance;
     }
     
     public ThreePartSentence getSentence() {
         
         double totalSent = nnpCount + svcCount;
-        
         
         double nnpRatio;
         try {
@@ -34,10 +39,10 @@ public class TitelblattFactory {
         double random = Math.random();
         
         if (random < nnpRatio) {
-            return NnpSentenceDao.createRandom();
+            return nnpSentenceDao.createRandom();
         }
         else 
-            return SvcSentenceDao.createRandom();
+            return svcSentenceDao.createRandom();
             
     }
 }
