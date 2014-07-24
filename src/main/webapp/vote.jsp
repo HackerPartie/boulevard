@@ -11,7 +11,7 @@
 </head>
 <body>
     <jsp:include page="includes/navigation.jsp" />
-    <h3>Titelblatt Generator Sein Top 10</h3>
+    <h3>Unserer Titelblatt Generator Top 10</h3>
     <c:if test="${not empty listAll}">
         <div class="top10_member">
             <table class="table table-striped">

@@ -1,6 +1,7 @@
 package hacker.partie.services;
 
 import hacker.partie.model.ThreePartSentence;
+import hacker.partie.services.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
