@@ -37,12 +37,29 @@
             ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement}
         </h1>
     </form>
-    <c:if test="${not empty welcomeMessage}">
-        <div class="alert alert-warning alert-dismissible" role="alert">
+    <c:if test="${not empty sessionScope.welcomeMessage}">
+        <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
             ${welcomeMessage}
+        </div>
+    </c:if>
+    <c:if test="${sessionScope.votes <= 5 and validVote}">
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+            ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} versucht jetzt zum Top10 zu gehen.
+        </div>
+    </c:if>
+    
+        <c:if test="${sessionScope.votes > 5 and not empty validVote and validVote == false}">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert">
+                <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+            </button>
+             Danke für dein Enthusiasmus ! Du kannst morgen wieder wählen.
         </div>
     </c:if>
 </body>

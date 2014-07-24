@@ -211,6 +211,7 @@ public class SentenceDao {
 		Connection connect = null;
 		PreparedStatement myPreparedStatement = null;
 		ResultSet myResultSet = null;
+		boolean localSuccess = false;
 
 		try {
 			connect = DatabaseConnection.connectDB();
@@ -218,24 +219,23 @@ public class SentenceDao {
 					.prepareStatement("DELETE FROM " + tableName + " WHERE id = "
 							+ id + ";");
 
-			int execute = myPreparedStatement.executeUpdate();
-			return (execute != 0);
+			if (myPreparedStatement.executeUpdate() == 0) 
+			    localSuccess = true;
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
 
-			return  false;
-
 		} finally {
 			closeConnections(myResultSet, myPreparedStatement, connect);
 		}
+		
+		return localSuccess;
 	}
 	
     public int count() {
         Connection connect = null;
         PreparedStatement myPreparedStatement = null;
         ResultSet myResultSet = null;
-        
 
         try {
             connect = DatabaseConnection.connectDB();

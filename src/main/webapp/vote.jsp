@@ -11,18 +11,22 @@
 </head>
 <body>
     <jsp:include page="includes/navigation.jsp" />
-    <h3>Top 10</h3>
+    <h3>Titelblatt Generator Sein Top 10</h3>
     <c:if test="${not empty listAll}">
-    <table class="table table-striped">
-        <c:forEach items="${listAll}" var="favourite">
-            <tr>
-                <td>${favourite.sentence.subject}</td>
-                <td>${favourite.sentence.verb}</td>
-                <td>${favourite.sentence.complement}</td>
-                <td>${favourite.score}</td>
-            </tr>
-        </c:forEach>
-    </table>
+        <div class="top10_member">
+            <table class="table table-striped">
+                <c:forEach items="${listAll}" var="favourite">
+                    <tr>
+                        <td>
+                        <c:out value="${favourite.sentence.subject}" />
+                        <c:out value="${favourite.sentence.verb}" />
+                        <c:out value="${favourite.sentence.complement}" />
+                        </td>
+                        <td><c:out value="${favourite.score}" /></td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </c:if>
 </body>
 </html>

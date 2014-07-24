@@ -9,6 +9,5 @@ public class Messages {
 			+ "Basierend auf einer Datenbank von <strong>authentischen originalen Titelblättern</strong> wird ein neues, "
 			+ "zufälliges, Titelblatt generiert bei jedem Knopfdruck.<br>"
 			+ "Es gilt die Unschuldsvermutung.";
-		
-
+	
 }

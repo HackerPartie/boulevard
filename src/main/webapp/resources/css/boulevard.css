@@ -32,9 +32,14 @@ The fixed navbar will overlay our other content, unless we add padding to the bo
 	padding-bottom: 70px;
 }
 
-.html.body,h1 {
-	font-size: 75px !important;
+h1 {
+	font-size: 75px;
 	font-family: 'Bree Serif', serif;
+}
+
+
+.top10_member {
+     font-family: 'Bree Serif', serif;
 }
 
 /* =====================================================================
