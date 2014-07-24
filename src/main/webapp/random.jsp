@@ -35,7 +35,7 @@
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
-            ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} wurde jetzt zu den Top10 addiert ! 
+            ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} wurde jetzt zu den Top10 hinzugefügt ! 
         </div>
     </c:if>
     
@@ -44,7 +44,7 @@
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
-             Danke für dein Enthusiasmus ! Du kannst Morgen wieder wählen.
+             Danke für deinen Enthusiasmus ! Du kannst Morgen wieder wählen.
         </div>
     </c:if>
 </body>
