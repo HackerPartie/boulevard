@@ -4,23 +4,8 @@
 <html>
 <head>
 <jsp:include page="includes/common-header.jsp" />
+<jsp:include page="includes/homepage-javascript.jsp" />
 <title>Mein Österreich ist ur org: Das Boulevard Titelblatt Generator</title>
-<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js',
-            'ga');
-
-    ga('create', 'UA-3366813-3', 'auto');
-    ga('send', 'pageview');
-</script>
 </head>
 
 <body>
@@ -28,12 +13,12 @@
     <p id="logo_pic" align="center">
         <a href="/titelblatt"> <img src="papercutlogo.png" alt="Österreich ist-ur.org" align="middle" />
         </a>
-    <form method="post" action="vote">
+    <form method="post" action="top10">
         <h1 class="text-center pagination-centered">
             <input name="subject" value="${randomJunk.subject}" type="hidden"/> 
             <input name="verb" value="${randomJunk.verb}" type="hidden"/> 
             <input name="complement" value="${randomJunk.complement}" type="hidden"/>
-            <input type="submit" id="submit-form" class="hidden" type="hidden"/>
+            <input type="submit" id="submit-form" class="hidden"/>
             ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement}
         </h1>
     </form>
@@ -50,7 +35,7 @@
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
-            ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} versucht jetzt zum Top10 zu gehen.
+            ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} wurde jetzt zu den Top10 addiert ! 
         </div>
     </c:if>
     
@@ -59,7 +44,7 @@
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
-             Danke für dein Enthusiasmus ! Du kannst morgen wieder wählen.
+             Danke für dein Enthusiasmus ! Du kannst Morgen wieder wählen.
         </div>
     </c:if>
 </body>

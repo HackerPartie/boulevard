@@ -14,7 +14,7 @@
                 <c:if test="${not empty randomJunk}">
                 <label for="submit-form"><span class="btn btn-info btn-lg">Zum Top 10 hinzüfugen</span></label>
                 </c:if>
-            <a href="${context}/vote" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
+            <a href="${context}/top10" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"

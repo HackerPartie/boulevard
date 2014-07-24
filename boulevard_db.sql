@@ -48,5 +48,5 @@ INSERT INTO user_auth VALUES(default, 'admin', '$shiro1$SHA-256$500000$I+FkvpG/u
 CREATE TABLE favourites(
 id serial primary key, object VARCHAR(100), verb VARCHAR(100), complement VARCHAR(100), score INTEGER);
 
-INSERT INTO favourites VALUES (default, 'Hillary Clinton:', 'kassiert' , 'mit zwei Mördern zu Hochzeit', 0);
+INSERT INTO favourites VALUES (default, 'Hillary Clinton:', 'kassiert' , 'mit zwei Mördern zu Hochzeit', 1);
 

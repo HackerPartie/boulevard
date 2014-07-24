@@ -81,7 +81,7 @@ public class FavouriteDao extends SentenceDao {
 
             // PreparedStatement für SQL-Befehl
             myPreparedStatement = connect
-                .prepareStatement("INSERT INTO " + this.getTableName() + " VALUES(default,?, ?, ?, 0)");
+                .prepareStatement("INSERT INTO " + this.getTableName() + " VALUES(default,?, ?, ?, 1)");
 
             myPreparedStatement.setString(1, toSave.getSentence().getSubject());
             myPreparedStatement.setString(2, toSave.getSentence().getVerb());
