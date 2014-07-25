@@ -51,7 +51,7 @@ public class SentenceDao {
 			// PreparedStatement für den SQL-Befehl
 			connect = DatabaseConnection.connectDB();
 			myPreparedStatement = connect
-					.prepareStatement("SELECT * FROM " + tableName + ";");
+					.prepareStatement("SELECT * FROM " + tableName + " ORDER BY ID DESC ;");
 
 			// SQL-Befehl wird ausgeführt
 			myResultSet = myPreparedStatement.executeQuery();
@@ -89,7 +89,7 @@ public class SentenceDao {
 
 			// PreparedStatement für SQL-Befehl
 			myPreparedStatement = connect
-					.prepareStatement("INSERT INTO " + tableName + "VALUES(default,?, ?, ?)");
+					.prepareStatement("INSERT INTO " + tableName + " VALUES(default, ?, ?, ?);");
 
 			myPreparedStatement.setString(1, toSave.getSubject());
 			myPreparedStatement.setString(2, toSave.getVerb());
