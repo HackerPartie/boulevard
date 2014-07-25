@@ -22,7 +22,7 @@
             ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement}
         </h1>
     </form>
-    <c:if test="${not empty sessionScope.welcomeMessage}">
+    <c:if test="${not empty requestScope.welcomeMessage}">
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
                 <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
