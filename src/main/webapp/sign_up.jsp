@@ -25,7 +25,7 @@
     <h4> register </h4>
     <br>
     <div class="form-group" style="width: 200px">
-        <form action="register" method="post" class="form-horizontal">
+        <form action="5ad115c3be0d9007bca7d5ae53bf06a8" method="post" class="form-horizontal">
 
             <input type="text" name="username" class="form-control" placeholder="username"><br>
             <input type="password" name="password" class="form-control" placeholder="password"><br>
