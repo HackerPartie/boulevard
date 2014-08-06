@@ -48,8 +48,6 @@ public class UserDao {
     public boolean doRegister(String username, String encryptedPassword) {
         PreparedStatement preparedStatement;
         Connection connection = DatabaseConnection.connectDB();
-        System.out.println(username);
-        System.out.println(encryptedPassword);
         boolean registerSuccess;
         try {
             preparedStatement = connection.prepareStatement("insert into user_auth(username, password) values(?,?)");

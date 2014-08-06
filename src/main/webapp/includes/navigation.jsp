@@ -12,7 +12,7 @@
 			</button>
 			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt Generieren</a>
                 <c:if test="${not empty randomJunk}">
-                <label for="submit-form"><span class="btn btn-info btn-lg">Zum Top 10 hinzüfugen</span></label>
+                <label for="submit-form"><span class="btn btn-info btn-lg">Für die Top 10 wählen</span></label>
                 </c:if>
             <a href="${context}/top10" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
 		</div>
