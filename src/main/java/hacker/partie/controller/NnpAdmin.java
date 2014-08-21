@@ -63,8 +63,7 @@ public class NnpAdmin extends HttpServlet {
 		nnpSentenceDao.delete(id);
 		resetFactory();
 		
-		// no need for redirect here, we issued an ajax call
-		// resp.sendRedirect("nnpadmin");			
+		// no need for forward or redirect here, we came here via  an ajax call
 	}
 	
 	   private void resetFactory() {
