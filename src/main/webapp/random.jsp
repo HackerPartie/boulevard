@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="includes/common-header.jsp" />
 <jsp:include page="includes/homepage-javascript.jsp" />
-<title>Mein Österreich ist ur org: Das Boulevard Titelblatt Generator</title>
+<title>Mein Österreich ist ur org: Der Boulevard Titelblatt Generator</title>
 </head>
 
 <body>
