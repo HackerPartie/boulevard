@@ -5,20 +5,21 @@
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
+				data-target="#noncritical_menu_entries">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 			</button>
-			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt Generieren</a>
-                <c:if test="${not empty randomJunk}">
-                <label for="submit-form"><span class="btn btn-info btn-lg">Für die Top 10 wählen</span></label>
-                </c:if>
-            <a href="${context}/top10" class="btn btn-primary btn-lg">Top 10 Anschauen</a>    
+			<a href="${context}/titelblatt" class="btn btn-success btn-lg">Titelblatt Generieren</a>&nbsp;    
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+			id="noncritical_menu_entries">
+			    <c:if test="${not empty randomJunk}">
+                <label for="submit-form"><span class="btn btn-info btn-lg">Für die Top 10 wählen</span></label>
+                </c:if>
+            <a href="${context}/top10" class="btn btn-primary btn-lg">Top 10 Anschauen</a>
 			<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${not empty sessionScope.sessionUser}">
