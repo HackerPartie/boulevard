@@ -25,7 +25,7 @@
     <c:if test="${not empty requestScope.welcomeMessage}">
         <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
-                <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
             ${welcomeMessage}
         </div>
@@ -33,7 +33,7 @@
     <c:if test="${sessionScope.votes <= 5 and validVote}">
         <div class="alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
-                <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
             ${randomJunk.subject} ${randomJunk.verb} ${randomJunk.complement} wurde jetzt zu den Top10 hinzugefügt ! 
         </div>
@@ -42,7 +42,7 @@
         <c:if test="${sessionScope.votes > 5 and not empty validVote and validVote == false}">
         <div class="alert alert-warning alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert">
-                <span area-hidden="true">&times;</span><span class="sr-only">Close</span>
+                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
             </button>
              Danke für deinen Enthusiasmus ! Du kannst Morgen wieder wählen.
         </div>
